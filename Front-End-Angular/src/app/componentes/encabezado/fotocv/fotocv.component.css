@@ -1,0 +1,23 @@
+.cv-text1 {
+    font-weight: Bold;
+    font-size: 34px;
+    opacity: 1;
+  }
+  .cv-text2 {
+    font-size: 28px;
+    opacity: 1;
+  }
+
+  .bloque {
+    margin-top: -120px;
+    position: relative;
+  }
+  .fotocv {
+    border-radius: 50%;    
+    z-index: 1;
+    border-color: #000000;
+    border: 3px solid;
+    
+    
+    
+}

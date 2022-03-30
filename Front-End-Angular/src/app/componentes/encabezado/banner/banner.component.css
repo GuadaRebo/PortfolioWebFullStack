@@ -1,0 +1,50 @@
+
+.imagenbanner {
+    background-image: url(../../../../assets/luces.jpg);
+    width: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    height: 642px;
+    border-radius: 0px;
+    padding: 0.25rem;    
+}
+.banner-txt {
+    font-weight: lighter;
+    font-size: 50px;
+    padding-top: 30px;
+    opacity: 1;
+    top: 25px;
+  left: 49px;
+  text-align: center;
+  justify-content: center;
+  
+  
+}
+.banner-txt2 {
+    font-weight: Lighter;
+    font-size: 30px;
+    opacity: 1;
+    top: 111px;
+  left: 97px;
+  padding-top: 10px;
+  text-align: center;
+
+  
+}
+.banner-borde {
+    width: 500px;
+    height: 195px;
+    border: 2px solid rgba(0,0,0,1);
+  border-top-left-radius: 25px;
+  border-top-right-radius: 25px;
+  border-bottom-left-radius: 25px;
+  border-bottom-right-radius: 25px;
+  overflow: hidden;
+  justify-content: center;
+    align-items: center;
+    text-align: center;
+    
+}   
+

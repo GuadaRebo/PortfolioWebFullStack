@@ -1,0 +1,15 @@
+
+  
+.redes {
+    float: right;
+    padding: 8px;
+    justify-content:center;
+    align-items:center;
+}
+
+.imagenes {
+    margin: 8px;
+    margin-top: 16px;
+}
+
+

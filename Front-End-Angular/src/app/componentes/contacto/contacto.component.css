@@ -1,0 +1,17 @@
+.contacto {
+    font-weight: Lighter;
+  font-size: 34px;
+  opacity: 1;
+  color: #3996eb;
+  text-align: center;
+}
+.btn {
+    justify-content: center;
+    align-items: center;
+}
+.center {
+  display: flex;
+align-items: center;
+justify-content: center;
+
+}

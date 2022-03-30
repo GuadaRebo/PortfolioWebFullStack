@@ -1,0 +1,215 @@
+-- MySQL Workbench Forward Engineering
+
+SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
+SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
+SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
+
+-- -----------------------------------------------------
+-- Schema portfolio
+-- -----------------------------------------------------
+
+-- -----------------------------------------------------
+-- Schema portfolio
+-- -----------------------------------------------------
+CREATE SCHEMA IF NOT EXISTS `portfolio` DEFAULT CHARACTER SET utf8 ;
+USE `portfolio` ;
+
+-- -----------------------------------------------------
+-- Table `portfolio`.`acerca_de`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `portfolio`.`acerca_de` (
+  `id` INT NOT NULL,
+  `texto` VARCHAR(250) NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `portfolio`.`persona`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `portfolio`.`persona` (
+  `id` INT NOT NULL,
+  `nombre` VARCHAR(45) NULL,
+  `apellido` VARCHAR(45) NULL,
+  `fechaNac` DATE NULL,
+  `telefono` VARCHAR(12) NULL,
+  `correo` VARCHAR(200) NULL,
+  `url_foto` VARCHAR(100) NULL,
+  `acerca_de_id` INT NOT NULL,
+  PRIMARY KEY (`id`, `acerca_de_id`),
+  INDEX `fk_persona_acerca_de1_idx` (`acerca_de_id` ASC) VISIBLE,
+  CONSTRAINT `fk_persona_acerca_de1`
+    FOREIGN KEY (`acerca_de_id`)
+    REFERENCES `portfolio`.`acerca_de` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `portfolio`.`tipo_empleo`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `portfolio`.`tipo_empleo` (
+  `id` INT NOT NULL,
+  `nombreTipo` VARCHAR(45) NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `portfolio`.`experiencia_laboral`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `portfolio`.`experiencia_laboral` (
+  `id` INT NOT NULL,
+  `nombreEmpresa` VARCHAR(45) NULL,
+  `esTrabajoActual` TINYINT NULL,
+  `fechaInicio` DATE NULL,
+  `fechaFin` DATE NULL,
+  `descripcion` VARCHAR(255) NULL,
+  `persona_id` INT NOT NULL,
+  `tipo_empleo_id` INT NOT NULL,
+  PRIMARY KEY (`id`, `tipo_empleo_id`),
+  INDEX `fk_experiencia_laboral_persona_idx` (`persona_id` ASC) VISIBLE,
+  INDEX `fk_experiencia_laboral_tipo_empleo1_idx` (`tipo_empleo_id` ASC) VISIBLE,
+  CONSTRAINT `fk_experiencia_laboral_persona`
+    FOREIGN KEY (`persona_id`)
+    REFERENCES `portfolio`.`persona` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_experiencia_laboral_tipo_empleo1`
+    FOREIGN KEY (`tipo_empleo_id`)
+    REFERENCES `portfolio`.`tipo_empleo` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `portfolio`.`usuario`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `portfolio`.`usuario` (
+  `id` INT NOT NULL,
+  `nombre` VARCHAR(45) NULL,
+  `contraseña` VARCHAR(45) NULL,
+  `persona_id` INT NOT NULL,
+  PRIMARY KEY (`id`, `persona_id`),
+  INDEX `fk_usuario_persona1_idx` (`persona_id` ASC) VISIBLE,
+  CONSTRAINT `fk_usuario_persona1`
+    FOREIGN KEY (`persona_id`)
+    REFERENCES `portfolio`.`persona` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `portfolio`.`domicilio`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `portfolio`.`domicilio` (
+  `id` INT NOT NULL,
+  `ciudad` VARCHAR(45) NULL,
+  `provincia` VARCHAR(45) NULL,
+  `pais` VARCHAR(45) NULL,
+  `persona_id` INT NOT NULL,
+  PRIMARY KEY (`id`, `persona_id`),
+  INDEX `fk_domicilio_persona1_idx` (`persona_id` ASC) VISIBLE,
+  CONSTRAINT `fk_domicilio_persona1`
+    FOREIGN KEY (`persona_id`)
+    REFERENCES `portfolio`.`persona` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `portfolio`.`educacion`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `portfolio`.`educacion` (
+  `id` INT NOT NULL,
+  `colegio secundario` VARCHAR(45) NULL,
+  `universidad` VARCHAR(45) NULL,
+  `cursos` VARCHAR(45) NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `portfolio`.`persona_tiene_educacion`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `portfolio`.`persona_tiene_educacion` (
+  `persona_id` INT NOT NULL,
+  `persona_acerca_de_id` INT NOT NULL,
+  `educacion_id` INT NOT NULL,
+  PRIMARY KEY (`persona_id`, `persona_acerca_de_id`, `educacion_id`),
+  INDEX `fk_persona_has_educacion_educacion1_idx` (`educacion_id` ASC) VISIBLE,
+  INDEX `fk_persona_has_educacion_persona1_idx` (`persona_id` ASC, `persona_acerca_de_id` ASC) VISIBLE,
+  CONSTRAINT `fk_persona_has_educacion_persona1`
+    FOREIGN KEY (`persona_id` , `persona_acerca_de_id`)
+    REFERENCES `portfolio`.`persona` (`id` , `acerca_de_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_persona_has_educacion_educacion1`
+    FOREIGN KEY (`educacion_id`)
+    REFERENCES `portfolio`.`educacion` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `portfolio`.`proyectos`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `portfolio`.`proyectos` (
+  `id` INT NOT NULL,
+  `nombre` VARCHAR(45) NULL,
+  `fecha` DATE NULL,
+  `tecnologiasUtilizadas` VARCHAR(100) NULL,
+  `persona_id` INT NOT NULL,
+  `persona_acerca_de_id` INT NOT NULL,
+  PRIMARY KEY (`id`, `persona_id`, `persona_acerca_de_id`),
+  INDEX `fk_proyectos_persona1_idx` (`persona_id` ASC, `persona_acerca_de_id` ASC) VISIBLE,
+  CONSTRAINT `fk_proyectos_persona1`
+    FOREIGN KEY (`persona_id` , `persona_acerca_de_id`)
+    REFERENCES `portfolio`.`persona` (`id` , `acerca_de_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `portfolio`.`habilidades`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `portfolio`.`habilidades` (
+  `idhabilidades` INT NOT NULL,
+  `nombre` VARCHAR(45) NULL,
+  PRIMARY KEY (`idhabilidades`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `portfolio`.`habilidades_tiene_persona`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `portfolio`.`habilidades_tiene_persona` (
+  `habilidades_idhabilidades` INT NOT NULL,
+  `persona_id` INT NOT NULL,
+  `persona_acerca_de_id` INT NOT NULL,
+  `porcentaje` VARCHAR(45) NULL,
+  PRIMARY KEY (`habilidades_idhabilidades`, `persona_id`, `persona_acerca_de_id`),
+  INDEX `fk_habilidades_has_persona_persona1_idx` (`persona_id` ASC, `persona_acerca_de_id` ASC) VISIBLE,
+  INDEX `fk_habilidades_has_persona_habilidades1_idx` (`habilidades_idhabilidades` ASC) VISIBLE,
+  CONSTRAINT `fk_habilidades_has_persona_habilidades1`
+    FOREIGN KEY (`habilidades_idhabilidades`)
+    REFERENCES `portfolio`.`habilidades` (`idhabilidades`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_habilidades_has_persona_persona1`
+    FOREIGN KEY (`persona_id` , `persona_acerca_de_id`)
+    REFERENCES `portfolio`.`persona` (`id` , `acerca_de_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+SET SQL_MODE=@OLD_SQL_MODE;
+SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
+SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;

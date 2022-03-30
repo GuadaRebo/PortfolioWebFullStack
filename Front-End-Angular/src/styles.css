@@ -1,0 +1,147 @@
+:root {
+    --violeta: #400355;
+    --rosa: #D517D9;
+    --naranja: #FAA543;
+    --gris: #C4C4C4;
+    --celeste: #3895EA;
+    --borde: rgba(255,255,255,1);
+    --negro: #000000;
+    --blanco: #ffffff;
+    --font: "Open Sans", sans-serif;
+    --font-weight: lighter;
+    --max-width: 1200px;
+    --header-height: 3rem;
+    }
+    /* ********** Resets ********** */
+    html {
+        box-sizing: border-box;
+        font-family: var(--font);
+        font-size: 16px;
+        scroll-behavior: smooth;
+    }
+    *,
+    *::after,
+    *::before {
+        box-sizing: inherit;
+    }
+    body {
+        margin: 0;
+        overflow-x: hidden;
+    }
+    
+    a {
+        color: var(--celeste);
+        transition: all 0.5s ease-out;
+    }
+    
+    a:hover {
+        opacity: 0.75;
+    }
+    
+    h1 {
+        margin: 0;
+        font-size: 2rem;
+    }
+    h2 {
+        margin: 0;
+        font-size: 1.5rem;
+    }
+    h3 {
+        margin: 0;
+        font-size: 34px;
+    }
+    h4 {
+        margin: 0;
+        font-size: 1rem;
+    }
+    h5 {
+        margin: 0;
+        font-size: 0.85rem;
+        
+    }
+    h6 {
+        margin: 0;
+        font-size: 0.7rem;
+    }
+    
+    img{
+        max-width: 100%;
+        height: auto;
+    }
+    p {
+            line-height: 1.6;
+    }
+    
+    
+    .menu {
+        display:none;
+    }
+    
+    
+    .box-shadow-1 {
+        box-shadow: 0rem 0.25rem 0.25rem rgba(0, 0, 0, 0.25);
+    }
+    .margenes {
+        margin-left: auto;
+        margin-right: auto;
+        max-width: var(--max-width);
+    }
+    .none {
+        display: none;
+    }
+    
+            
+    .container h2 {
+        font-size: 34px;
+        color: var(--rosa);
+        font-weight: lighter;
+        text-align: center;
+        padding: 0.5rem;
+        
+    }
+    .borde {
+        border: var(--borde);
+        border: 2px solid rgba(0,0,0,0.28999999165534973);
+      border-top-left-radius: 20px;
+      border-top-right-radius: 20px;
+      border-bottom-left-radius: 20px;
+      border-bottom-right-radius: 20px;
+      overflow: hidden;
+      background: rgba(255,255,255,1);
+      border-bottom: 0rem 0.25rem 0.25rem rgba(0, 0, 0, 0.25);
+    }
+    
+    .division {
+        margin: 3rem;
+    }
+    .division2 {
+        margin: 4rem;
+    }
+          
+    
+    .acerca-text {
+        font-weight: Lighter;
+        font-size: 20px;
+        opacity: 1;
+        text-align: justify;
+    }
+    .acerca-text ul {
+        list-style-type: none;
+        padding: 0;
+        text-align: left;
+    }
+    
+    
+    
+    
+    
+   
+    
+    
+    
+   
+    
+   
+    
+    
+    
