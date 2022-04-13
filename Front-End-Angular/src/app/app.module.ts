@@ -18,6 +18,8 @@ import { BotonloginComponent } from './componentes/encabezado/redesylogin/botonl
 import { BannerComponent } from './componentes/encabezado/banner/banner.component';
 import { FotocvComponent } from './componentes/encabezado/fotocv/fotocv.component';
 import { FormmodalACComponent } from './componentes/acerca-de/formmodal-ac/formmodal-ac.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+
 
 
 @NgModule({
@@ -41,7 +43,8 @@ import { FormmodalACComponent } from './componentes/acerca-de/formmodal-ac/formm
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FontAwesomeModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
