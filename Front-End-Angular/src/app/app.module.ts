@@ -17,6 +17,8 @@ import { RedesyloginComponent } from './componentes/encabezado/redesylogin/redes
 import { BotonloginComponent } from './componentes/encabezado/redesylogin/botonlogin/botonlogin.component';
 import { BannerComponent } from './componentes/encabezado/banner/banner.component';
 import { FotocvComponent } from './componentes/encabezado/fotocv/fotocv.component';
+import { FormmodalACComponent } from './componentes/acerca-de/formmodal-ac/formmodal-ac.component';
+
 
 @NgModule({
   declarations: [
@@ -33,7 +35,8 @@ import { FotocvComponent } from './componentes/encabezado/fotocv/fotocv.componen
     RedesyloginComponent,
     BotonloginComponent,
     BannerComponent,
-    FotocvComponent
+    FotocvComponent,
+    FormmodalACComponent,
   ],
   imports: [
     BrowserModule,
