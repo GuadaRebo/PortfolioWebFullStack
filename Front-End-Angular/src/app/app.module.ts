@@ -19,6 +19,7 @@ import { BannerComponent } from './componentes/encabezado/banner/banner.componen
 import { FotocvComponent } from './componentes/encabezado/fotocv/fotocv.component';
 import { FormmodalACComponent } from './componentes/acerca-de/formmodal-ac/formmodal-ac.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -45,6 +46,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     AppRoutingModule,
     HttpClientModule,
     FontAwesomeModule,
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

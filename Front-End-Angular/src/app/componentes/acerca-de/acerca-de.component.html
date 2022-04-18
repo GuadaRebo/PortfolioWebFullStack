@@ -5,24 +5,28 @@
    <h2>Acerca de</h2>
    <div class="container margenes mt-0" >
       <fa-icon
-      class="float-end ms-2"
+      class="float-end fa-icon"
       [icon]="faTrashCan"
-      (click)="eliminar()"
-      style="cursor: pointer"
+      (click)="eliminar(acercaDe.id)"
       *ngIf="hasRoute('/edicion')"
     >      </fa-icon>
     <fa-icon
-    class="float-end ms-2"  
-    [icon]="faPencil"
-    style="cursor: pointer"
+    class="float-end fa-icon"  
+    [icon]="faPencil"    
     *ngIf="hasRoute('/edicion')"
+    data-bs-toggle="modal" 
+    data-bs-target="#exampleModal" 
+    data-bs-whatever="@mdo"
   >      </fa-icon>
           
   </div>
-  <div id="text-acercade" class="container margenes acerca-text pb-3 pt-4 me-4">
-   <app-formmodal-ac></app-formmodal-ac>
-   {{miPortfolio.acercade}}
-  </div>
+  <app-formmodal-ac></app-formmodal-ac>
+  <div id="text-acercade" class="container margenes acerca-text pb-3 pt-3 me-4" *ngFor="let dato of datos"  >
+    
+     <p> {{dato.descripcion}}</p>
+
+   
+</div>
   <div>
      <input id="edit-acercade" type="text" oninput="myFuction2(this.value)" style="display:none">
   </div>

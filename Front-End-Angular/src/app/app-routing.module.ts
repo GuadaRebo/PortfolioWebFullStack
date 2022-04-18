@@ -5,6 +5,7 @@ import { AppComponent } from './app.component';
 
 const appRoutes: Routes = [
   {path: 'edicion', component: AppComponent},
+  {path: '**', redirectTo: '', pathMatch: 'full'}
   
 ]
 @NgModule({

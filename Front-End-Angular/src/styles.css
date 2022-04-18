@@ -131,7 +131,10 @@
         text-align: left;
     }
     
-    
+    .fa-icon{
+        cursor: pointer;
+        padding-left: 2px;
+    }
     
     
     

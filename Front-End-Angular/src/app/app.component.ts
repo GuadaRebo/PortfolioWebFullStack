@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-
+import {Router} from '@angular/router';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -7,4 +7,14 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Front-End-Angular';
+
+  constructor(
+    private router: Router,
+    
+    ) { }
+  hasRoute(route: string) {
+    return this.router. url === route
+  }
+  
+
 }

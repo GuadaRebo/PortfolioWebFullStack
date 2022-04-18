@@ -1,34 +1,44 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { PortfolioService} from '../../servicios/portfolio.service';
+
 import {faTrashCan } from '@fortawesome/free-solid-svg-icons';
 import {faPencil } from '@fortawesome/free-solid-svg-icons';
 import { Acercade } from '../../models/acerca-de';
 import {Router} from '@angular/router';
+import { AcercaDeService } from '../../servicios/acerca-de.service';
 @Component({
   selector: 'app-acerca-de',
   templateUrl: './acerca-de.component.html',
   styleUrls: ['./acerca-de.component.css']
 })
 export class AcercaDeComponent implements OnInit {
+  datos:Acercade[] = [];
   @Output() eliminarac: EventEmitter<Acercade> = new EventEmitter()
-  acercade: any;
-  miPortfolio:any;
+  acercaDe: any;
+  
   faTrashCan = faTrashCan;
   faPencil = faPencil;
-  constructor(private datosPortfolio:PortfolioService,
-    private router: Router
+  constructor(
+    private router: Router,
+    private datosAcercaDe: AcercaDeService
     ) { }
 
   ngOnInit(): void {
-    this.datosPortfolio.obtenerDatos().subscribe(data => {
-      console.log(data);
-      this.miPortfolio = data;
-    });
-  
-
+    this.obtenerAcercaDe(); 
+    
   }
-eliminar(){
-this.miPortfolio.eliminar();
+
+obtenerAcercaDe() {
+  this.datosAcercaDe.getAcercaDe().subscribe(datos => {
+    
+    this.datos = datos;
+  });
+}
+  
+eliminar(id:number){
+this.datosAcercaDe.deleteAcercade(id).subscribe(data => {
+  console.log(data);
+  this.acercaDe = data;
+})
 
 }
 onDelete(acercade: Acercade){
