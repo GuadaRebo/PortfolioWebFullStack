@@ -12,7 +12,7 @@ import { AcercaDeService } from '../../servicios/acerca-de.service';
 })
 export class AcercaDeComponent implements OnInit {
   datos:Acercade[] = [];
-  @Output() eliminarac: EventEmitter<Acercade> = new EventEmitter()
+  @Output() eliminarac: EventEmitter<Acercade> = new EventEmitter();
   acercaDe: any;
   
   faTrashCan = faTrashCan;

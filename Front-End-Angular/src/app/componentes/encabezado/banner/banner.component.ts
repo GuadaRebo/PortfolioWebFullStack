@@ -25,5 +25,11 @@ export class BannerComponent implements OnInit {
       this.datos = data;
     });
   }
+eliminar(id:number){
 
+}
+
+  hasRoute(route: string) {
+    return this.router. url === route
+  }
 }

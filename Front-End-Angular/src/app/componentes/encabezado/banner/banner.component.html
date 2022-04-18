@@ -1,4 +1,21 @@
 <div class="imagenbanner position-relative">
+  <div class="container margenes mt-0" >
+    <fa-icon
+    class="float-end fa-icon"
+    [icon]="faTrashCan"
+    (click)="eliminar(banner.id)"
+    *ngIf="hasRoute('/edicion')"
+  >      </fa-icon>
+  <fa-icon
+  class="float-end fa-icon"  
+  [icon]="faPencil"    
+  *ngIf="hasRoute('/edicion')"
+  data-bs-toggle="modal" 
+  data-bs-target="#exampleModal" 
+  data-bs-whatever="@mdo"
+>      </fa-icon>
+        
+</div>
     <div>
         <nav class="navbar navbar-expand-xl">
             <div class="container justify-content-end">

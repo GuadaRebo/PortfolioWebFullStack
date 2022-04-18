@@ -4,6 +4,7 @@
 <section id="Acercade" class="about"> 
    <h2>Acerca de</h2>
    <div class="container margenes mt-0" >
+   
       <fa-icon
       class="float-end fa-icon"
       [icon]="faTrashCan"
@@ -18,12 +19,13 @@
     data-bs-target="#exampleModal" 
     data-bs-whatever="@mdo"
   >      </fa-icon>
-          
-  </div>
-  <app-formmodal-ac></app-formmodal-ac>
-  <div id="text-acercade" class="container margenes acerca-text pb-3 pt-3 me-4" *ngFor="let dato of datos"  >
     
-     <p> {{dato.descripcion}}</p>
+  </div>
+ 
+  <div id="text-acercade" class="container margenes acerca-text pb-3 pt-3 me-4"  >
+   <app-formmodal-ac></app-formmodal-ac>
+     <p  
+     > "Hola! Mi nombre es Guadalupe estoy dando mis primeros pasos en el área de Tecnología haciendo numeroso cursos para capacitarme y poder iniciar mi carrera profesional lo más pronto posible."</p>
 
    
 </div>
