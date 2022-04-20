@@ -3,7 +3,7 @@ export interface Banner {
     nombres: string;
     apellido: string;
     position: string;
-    image_background_header: string;
+    imagen_banner: string;
 
 
 }

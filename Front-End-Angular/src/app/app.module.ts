@@ -11,17 +11,20 @@ import { HabilidadesComponent } from './componentes/habilidades/habilidades.comp
 import { ProyectosComponent } from './componentes/proyectos/proyectos.component';
 import { ContactoComponent } from './componentes/contacto/contacto.component';
 import { PieComponent } from './componentes/pie/pie.component';
-import {HttpClientModule } from '@angular/common/http';
+import {HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { LogoAPComponent } from './componentes/encabezado/logo-ap/logo-ap.component';
 import { RedesyloginComponent } from './componentes/encabezado/redesylogin/redesylogin.component';
 import { BotonloginComponent } from './componentes/encabezado/redesylogin/botonlogin/botonlogin.component';
 import { BannerComponent } from './componentes/encabezado/banner/banner.component';
 import { FotocvComponent } from './componentes/encabezado/fotocv/fotocv.component';
-import { FormmodalACComponent } from './componentes/acerca-de/formmodal-ac/formmodal-ac.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ReactiveFormsModule } from '@angular/forms';
-
-
+import {AcercaDeService} from '../app/servicios/acerca-de.service'
+import { PortfolioService} from '../app/servicios/portfolio.service';
+import { IniciarSesionComponent } from './componentes/iniciar-sesion/iniciar-sesion.component';
+import { PortfolioComponent } from './componentes/portfolio/portfolio.component';
+import {AutenticacionService} from '../app/servicios/autenticacion.service';
+import { InterceptorService} from '../app/servicios/interceptor.service';
 
 @NgModule({
   declarations: [
@@ -39,7 +42,9 @@ import { ReactiveFormsModule } from '@angular/forms';
     BotonloginComponent,
     BannerComponent,
     FotocvComponent,
-    FormmodalACComponent,
+    IniciarSesionComponent,
+    PortfolioComponent,
+  
   ],
   imports: [
     BrowserModule,
@@ -48,7 +53,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     FontAwesomeModule,
     ReactiveFormsModule,
   ],
-  providers: [],
+  providers: [AcercaDeService, PortfolioService, AutenticacionService,
+  { provide: HTTP_INTERCEPTORS, useClass:InterceptorService, multi: true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -12,8 +12,8 @@ miPortfolio:any;
 
   ngOnInit(): void {
     this.datosPortfolio.obtenerDatos().subscribe(data => {
-      console.log(data);
-      this.miPortfolio = data;
+      console.log("Datos personales:" + JSON.stringify(data));
+      this.miPortfolio = data[0];
     });
   }
 

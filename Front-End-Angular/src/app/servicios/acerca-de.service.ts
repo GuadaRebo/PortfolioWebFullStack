@@ -18,8 +18,8 @@ private apiURL =' http://localhost:3000/acercade'
 constructor(
     private http: HttpClient) {}
 
-  getAcercaDe():Observable <Acercade[]> {
-    return this.http.get<Acercade[]>(`${this.apiURL}`);
+  getAcercaDe():Observable <any> {
+    return this.http.get(`${this.apiURL}`);
   }
 
   addAcercaDe(acercade: Acercade): Observable<Acercade>{
@@ -33,8 +33,8 @@ constructor(
       httpOptions);
   }
 
-    deleteAcercade(id: number): Observable<Acercade> {
-      return this.http.delete<Acercade>(`${this.apiURL}/${id}`);
+    deleteAcercade(id: number): Observable<any> {
+      return this.http.delete(`${this.apiURL}/${id}`);
     }
 
 

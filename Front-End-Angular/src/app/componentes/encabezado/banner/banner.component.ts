@@ -3,14 +3,14 @@ import { PortfolioService } from 'src/app/servicios/portfolio.service';
 import {faTrashCan } from '@fortawesome/free-solid-svg-icons';
 import {faPencil } from '@fortawesome/free-solid-svg-icons';
 import {Router} from '@angular/router';
-import { Banner } from '../../../models/banner';
+import { Banner } from '../../../models/banner'
 @Component({
   selector: 'app-banner',
   templateUrl: './banner.component.html',
   styleUrls: ['./banner.component.css']
 })
 export class BannerComponent implements OnInit {
-  datos:Banner[] = [];
+  datos: Banner[] = []
   
   banner:any;
   faTrashCan = faTrashCan;
@@ -25,11 +25,7 @@ export class BannerComponent implements OnInit {
       this.datos = data;
     });
   }
-eliminar(id:number){
 
-}
 
-  hasRoute(route: string) {
-    return this.router. url === route
-  }
+  
 }

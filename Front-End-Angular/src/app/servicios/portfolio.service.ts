@@ -12,7 +12,7 @@ export class PortfolioService {
   constructor(
     private http:HttpClient) { }
 
-  obtenerDatos():Observable<Banner[]> {
-    return this.http.get<Banner[]>(`${this.apiURL}`);
+  obtenerDatos():Observable<any> {
+    return this.http.get(`${this.apiURL}`);
   }
 }

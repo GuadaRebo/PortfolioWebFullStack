@@ -1,20 +1,14 @@
 <div class="imagenbanner position-relative">
   <div class="container margenes mt-0" >
-    <fa-icon
-    class="float-end fa-icon"
-    [icon]="faTrashCan"
-    (click)="eliminar(banner.id)"
-    *ngIf="hasRoute('/edicion')"
-  >      </fa-icon>
+   
+   
   <fa-icon
   class="float-end fa-icon"  
   [icon]="faPencil"    
-  *ngIf="hasRoute('/edicion')"
-  data-bs-toggle="modal" 
-  data-bs-target="#exampleModal" 
-  data-bs-whatever="@mdo"
+  
+  
 >      </fa-icon>
-        
+  
 </div>
     <div>
         <nav class="navbar navbar-expand-xl">
@@ -33,9 +27,10 @@
             </div>
           </nav>
     </div>
-<div class="container responsive-section banner-borde position-absolute top-50 start-50 translate-middle">
-<h1 class="banner-txt">{{banner.nombres}}</h1>
-<p class="banner-txt2">{{banner.position}}</p>
+    <div *ngFor="let dato of datos">
+<div class="container responsive-section banner-borde position-absolute top-50 start-50 translate-middle" >
+<h1 class="banner-txt">{{dato.nombres}} {{dato.apellido}}</h1>
+<p class="banner-txt2">{{dato.position}}</p>
 </div>
 </div>
-
+</div>
