@@ -54,8 +54,21 @@ export class AcercaDeComponent implements OnInit {
     this.datos =data;
   });
   }
-  guardarAcercade(){
 
+ //************************MODIFICAR ESTO*************************
+openEdit(form:FormGroup){
+  this.texto?.setValue("texto");
+ 
+
+
+}
+//PONER UN IF PARA QUE EDITE O AGREGUE SEGUN LA SITUACION
+addOredit(){
+this.guardarAcercade()
+}
+
+  guardarAcercade(){
+    
      if (this.form.valid)
     {
       
@@ -81,7 +94,7 @@ export class AcercaDeComponent implements OnInit {
     this.form.reset();
   }
 
-
+ 
   
 
 

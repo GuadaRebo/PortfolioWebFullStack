@@ -36,7 +36,7 @@ form: FormGroup;
 
   onEnviar(event: Event){
    
-    event.preventDefault;
+    event.preventDefault();
 
    
         

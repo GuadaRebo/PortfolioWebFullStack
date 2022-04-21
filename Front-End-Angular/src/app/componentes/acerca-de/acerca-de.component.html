@@ -25,7 +25,8 @@
   
   </div>
  
-  <div id="text-acercade" class="container margenes acerca-text pb-3 pt-3 me-4" *ngFor="let dato of datos">
+  <div id="text-acercade" class="container margenes acerca-text pb-3 pt-3 me-4 list-group-item-action" *ngFor="let dato of datos" data-bs-toggle="modal" 
+  data-bs-target="#exampleModal"  (click)="openEdit(this.form)">
    
    
     {{dato.texto}}
@@ -47,10 +48,10 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <form [formGroup]="form">
+        <form [formGroup]="form" >
            <div class="mb-3">
             <label for="message-text" class="col-form-label">Texto nuevo:</label>
-            <textarea formControlName="texto" class="form-control" id="texto"></textarea>
+            <textarea formControlName="texto"  class="form-control" id="texto"></textarea>
             <div *ngIf="texto?.invalid && texto?.touched">
               <div *ngIf="texto?.errors?.['required']" class="text-danger">
                   El texto nuevo es requerido.
@@ -67,7 +68,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" id="cerrarModalAcercade" class="btn btn-secondary" data-bs-dismiss="modal" (click)="limpiarform()">Cerrar</button>
-        <button type="submit" [disabled]="form.invalid" class="btn btn-primary" (click)="guardarAcercade()">Enviar</button>
+        <button type="submit" [disabled]="form.invalid" class="btn btn-primary" (click)="addOredit()">Enviar</button>
       </div>
     </div>
   </div>
