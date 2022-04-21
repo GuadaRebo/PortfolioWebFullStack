@@ -59,13 +59,7 @@ export class AcercaDeComponent implements OnInit {
      if (this.form.valid)
     {
       
-      const FORM: Acercade = {
-        descripcion: this.form.get("texto")?.value
-      }
-
-      console.log(FORM);
-      console.log(this.form.get("texto")?.value)
-      this.datosAcercaDe.addAcercaDe(FORM).subscribe(FORM => {
+        this.datosAcercaDe.addAcercaDe(this.form.value).subscribe(FORM => {
         this.datos.push(FORM);
         this.ngOnInit();
 

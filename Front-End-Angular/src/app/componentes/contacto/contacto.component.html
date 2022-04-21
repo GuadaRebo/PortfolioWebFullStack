@@ -3,23 +3,47 @@
  <div class="container margenes mt-4 center" >
   <section id="Contacto" class="about"> 
      <p class="contacto">Contacto</p>
-     <form class="row g-3 center">
+     <form [formGroup]="form" class="row g-3 center" (ngSubmit)="onEnviar($event)">
        <div class="col-md-4" >
          <label for="name" class="form-label">Nombre</label>
-         <input type="text" class="form-control" id="inputName">
+         <input type="text" class="form-control" id="inputName" formControlName="nombre"
+         [ngClass]="{'is-invalid': Nombre?.errors && Nombre?.touched, 'is-valid': !Nombre?.errors && Nombre?.touched}">
+         <div *ngIf="Nombre?.errors && Nombre?.touched">
+          <p *ngIf="Nombre?.hasError('required')" class="text-danger">
+             El nombre es requerido.
+         </p>
+         </div>
        </div>
        <div class="col-md-4">
          <label for="inputEmail4" class="form-label">Correo</label>
-         <input type="email" class="form-control" id="inputEmail4">
+         <input type="email" class="form-control" id="inputEmail4" formControlName="correo" [ngClass]="{'is-invalid': Correo?.errors && Correo?.touched, 'is-valid': !Correo?.errors && Correo?.touched}">
+         <div *ngIf="Correo?.errors && Correo?.touched">
+          <p *ngIf="Correo?.hasError('required')" class="text-danger">
+             El correo es requerido.
+         </p>
+         <p *ngIf="Correo?.hasError('email')" class="text-danger">
+             El formato del correo debe ser válido.
+         </p>
+        </div>
        </div>
        <div class="form-floating col-md-8">
-          <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px">
-          </textarea>
+          <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px" formControlName="mensaje" [ngClass]="{'is-invalid': Mensaje?.errors && Mensaje?.touched, 'is-valid': !Mensaje?.errors && Mensaje?.touched}"> </textarea>
+            <div *ngIf="Mensaje?.errors && Mensaje?.touched">
+              <p *ngIf="Mensaje?.hasError('required')" class="text-danger">
+                 El mensaje es requerido.
+             </p>
+             <p *ngIf="Mensaje?.errors?.['maxlength']" class="text-danger">
+                 El mensaje debe ser de máximo 255 caracteres.
+             </p>
+      
+          </div>
+
+         
           <label for="floatingTextarea2">Mensaje</label>
         </div>
        
              <div class="col-12 center">
-         <button type="submit" class="btn btn-primary">Enviar</button>
+         <button type="submit" class="btn btn-primary" [disabled]="form.invalid">Enviar</button>
        </div>
      </form>
   </section> 

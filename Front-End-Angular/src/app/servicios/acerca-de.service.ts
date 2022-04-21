@@ -23,7 +23,7 @@ constructor(
   }
 
   addAcercaDe(acercade: Acercade): Observable<Acercade>{
-    return this.http.post<Acercade>(`${this.apiURL}`, acercade, httpOptions);
+    return this.http.post<Acercade>(`${this.apiURL}`, acercade);
   }
 
   editAcercade(acercade: Acercade, id: number): Observable<Acercade>{

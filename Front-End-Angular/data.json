@@ -26,5 +26,24 @@
       "imagen_cv": "(../../../../assets/fotocv.png)"
     }
   ],
-  "acercade": []
+  "acercade": [
+    {
+      "texto": "Hola! Mi nombre es Guadalupe estoy dando mis primeros pasos en el área de Tecnología haciendo numeroso cursos para capacitarme y poder iniciar mi carrera profesional lo más pronto posible.",
+      "id": 1
+    }
+  ],
+  "contacto": [
+    {
+      "nombre": "Guada",
+      "correo": "Guada@guadfa",
+      "mensaje": "holaa",
+      "id": 1
+    },
+    {
+      "nombre": "Guada",
+      "correo": "Guada@guadfa",
+      "mensaje": "tereee",
+      "id": 2
+    }
+  ]
 }

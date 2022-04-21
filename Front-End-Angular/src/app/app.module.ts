@@ -25,6 +25,7 @@ import { IniciarSesionComponent } from './componentes/iniciar-sesion/iniciar-ses
 import { PortfolioComponent } from './componentes/portfolio/portfolio.component';
 import {AutenticacionService} from '../app/servicios/autenticacion.service';
 import { InterceptorService} from '../app/servicios/interceptor.service';
+import { ContactoService} from '../app/servicios/contacto.service';
 
 @NgModule({
   declarations: [
@@ -53,7 +54,7 @@ import { InterceptorService} from '../app/servicios/interceptor.service';
     FontAwesomeModule,
     ReactiveFormsModule,
   ],
-  providers: [AcercaDeService, PortfolioService, AutenticacionService,
+  providers: [AcercaDeService, PortfolioService, AutenticacionService, ContactoService,
   { provide: HTTP_INTERCEPTORS, useClass:InterceptorService, multi: true}],
   bootstrap: [AppComponent]
 })
