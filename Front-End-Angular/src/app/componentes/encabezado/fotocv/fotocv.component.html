@@ -1,20 +1,22 @@
 <div class="container mt-2" width="50px">
-       <div class="container bloque ">
-          <img src="../../../../assets/fotocv.png" class="fotocv img-fluid" alt="" width="150" height="150">
-          <div class="container margenes col-6 mt-0" >
+       <div class="container bloque " *ngFor="let dato of datos">
+          <img src="../../../../assets/fotocv.png" class="fotocv img-fluid" alt="Foto de Guadalupe Reboiro" width="150" height="150">
+          <div class="container margenes col-6 mt-0"   >
    
    
             <fa-icon
             class=" fa-icon"  
             [icon]="faPencil"    
-            *ngIf="hasRoute('/edicion')"
+            data-bs-toggle="modal" 
+            data-bs-target="#PersonaModal"
             
           >      </fa-icon>
             
           </div>
-          <div class="cv-text1">Guadalupe Reboiro</div>
-          <div class="cv-text2">Rosario (Argentina)</div>
- 
+          <div *ngFor="let dato of datos">
+          <p class="cv-text1">{{dato.nombres}} {{dato.apellido}}</p>
+          <p class="cv-text2">{{dato.domicilio}}</p>
+        </div>
        </div>
     
  

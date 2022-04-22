@@ -20,12 +20,13 @@ import { FotocvComponent } from './componentes/encabezado/fotocv/fotocv.componen
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ReactiveFormsModule } from '@angular/forms';
 import {AcercaDeService} from '../app/servicios/acerca-de.service'
-import { PortfolioService} from '../app/servicios/portfolio.service';
+import { PersonaService} from '../app/servicios/persona.service';
 import { IniciarSesionComponent } from './componentes/iniciar-sesion/iniciar-sesion.component';
 import { PortfolioComponent } from './componentes/portfolio/portfolio.component';
 import {AutenticacionService} from '../app/servicios/autenticacion.service';
 import { InterceptorService} from '../app/servicios/interceptor.service';
 import { ContactoService} from '../app/servicios/contacto.service';
+import { ExpLaboralService} from '../app/servicios/exp-laboral.service';
 
 @NgModule({
   declarations: [
@@ -54,7 +55,7 @@ import { ContactoService} from '../app/servicios/contacto.service';
     FontAwesomeModule,
     ReactiveFormsModule,
   ],
-  providers: [AcercaDeService, PortfolioService, AutenticacionService, ContactoService,
+  providers: [AcercaDeService, PersonaService, AutenticacionService, ContactoService, ExpLaboralService,
   { provide: HTTP_INTERCEPTORS, useClass:InterceptorService, multi: true}],
   bootstrap: [AppComponent]
 })

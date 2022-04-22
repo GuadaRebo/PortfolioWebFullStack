@@ -19,14 +19,14 @@
     [icon]="faPencil"    
     
     data-bs-toggle="modal" 
-    data-bs-target="#exampleModal" 
+    data-bs-target="#ACDModal" 
     
   >      </fa-icon>
   
   </div>
  
   <div id="text-acercade" class="container margenes acerca-text pb-3 pt-3 me-4 list-group-item-action" *ngFor="let dato of datos" data-bs-toggle="modal" 
-  data-bs-target="#exampleModal"  (click)="openEdit(this.form)">
+  data-bs-target="#ACDModal"  (click)="updateForm()">
    
    
     {{dato.texto}}
@@ -40,7 +40,7 @@
 </div>
 
 <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="ACDModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">

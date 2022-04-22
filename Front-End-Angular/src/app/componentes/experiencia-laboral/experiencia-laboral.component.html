@@ -1,27 +1,46 @@
 <div class="division"></div>
  <div class="container margenes borde shadow" width="1337" height="505">
-  <section id="acerca" class="about"> 
-     <h2>Experiencia Laboral</h2>
-     <div class="container margenes mt-0" width="21" height="21">
-       <img src="assets/lapizedicion.png" class="float-end" alt="Lápiz para edición" width="18" height="18">
+  <h2>Experiencia Laboral</h2>
+  <section id="acerca" class="about" *ngFor="let dato of datos"> 
+    
+     <div class="container margenes mt-0" width="21" height="21" >
+      
+      <fa-icon
+      class="float-end fa-icon"
+      
+      [icon]="faTrashCan"
+      (click)="eliminar(dato.id)"
+      
+    >      </fa-icon>
+      
+      
+      <fa-icon
+      class="float-end fa-icon"  
+      [icon]="faPencil"    
+      data-bs-toggle="modal" 
+      data-bs-target="#ExpLaboralModal" 
+      
+    >      </fa-icon>
+      
     </div>
      <div class="container margenes pt-4">
        <div class="row">
-         <div class="col col-xl-2 me-0 pe-0">
-            <img src="assets/serfreelance.png" alt="" width="148" height="137">         
+         <div class="col col-xl-2 me-0 pe-0"  >
+            <img [src]="dato.foto" alt="" width="148" height="137">         
          </div>
           <div class="col col-xl-10">
-             <div class="expyeduc ms-0 ps-0 me-4">
-                <h3>Freelance</h3>
-                <h5>junio 2018 - actualidad</h5>
-                <div class="acerca-text mt-2">
-                   Clases particulares de contabilidad y matemática a alumnos de secundaria y emprendimiento de venta de artículos de confección propia.
+             <div class="expyeduc ms-0 ps-0 me-4"  >
+                <h3>{{dato.posicion}}  </h3>
+                <h5>{{dato.fecha}}</h5>
+                <div class=" ">
+                 <h3 class="mt-2">  {{ dato.empresa}}</h3>
+                 <p class="pb-3 acerca-text mt-0" >  {{dato.descripcion}}</p>
                 </div>
              </div>
     </div>
     </div>
     </div>
-    <div class="container margenes mt-0" width="21" height="21">
+ <!--   <div class="container margenes mt-0" width="21" height="21">
        <img src="assets/lapizedicion.png" class="float-end" alt="Lápiz para edición" width="18" height="18">
     </div>
      <div class="container margenes pt-4">
@@ -39,6 +58,88 @@
              </div>
     </div>
     </div>
-    </div>
+    </div> -->
   </section>
+ </div>
+ <!-- Modal -->
+<div class="modal fade" id="ExpLaboralModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+   <div class="modal-dialog">
+     <div class="modal-content">
+       <div class="modal-header">
+         <h5 class="modal-title" id="exampleModalLabel">Editar Experiencia Laboral</h5>
+         <button type="button" class="btn-close" (click)="limpiarform()" data-bs-dismiss="modal" aria-label="Close"></button>
+       </div>
+       <div class="modal-body">
+         <form [formGroup]="form" >
+            <div class="mb-3">
+             <label for="message-text" class="col-form-label">Posición:</label>
+             <input formControlName="posicion"  class="form-control" id="texto" [ngClass]="{'is-invalid': posicion?.errors && posicion?.touched, 'is-valid': !posicion?.errors && posicion?.touched}">
+             
+             <div *ngIf="posicion?.invalid && posicion?.touched">
+               <div *ngIf="posicion?.errors?.['required']" class="text-danger">
+                   La posición es requerida.
+               </div>
+               <div *ngIf="posicion?.errors?.['minlength']" class="text-danger">
+                  La posición debe tener como  mínimo 5 caracteres.
+               </div>
+              
+             </div>
+           </div>         
+           <div class="mb-3">
+             <label for="message-text" class="col-form-label">Empresa:</label>
+             <input formControlName="empresa"  class="form-control" id="texto" [ngClass]="{'is-invalid': empresa?.errors && empresa?.touched, 'is-valid': !empresa?.errors && empresa?.touched}"
+             >
+             <div *ngIf="empresa?.invalid && empresa?.touched">
+               
+                   
+             </div>
+           </div>         
+           <div class="mb-3">
+             <label for="message-text" class="col-form-label">Período:</label>
+             <input formControlName="fecha"  class="form-control" id="texto" [ngClass]="{'is-invalid': fecha?.errors && fecha?.touched, 'is-valid': !fecha?.errors && fecha?.touched}">
+             <div *ngIf="fecha?.invalid && fecha?.touched" >
+               <div *ngIf="fecha?.errors?.['required']" class="text-danger">
+                   La fecha es requerida.
+               </div>
+               <div *ngIf="fecha?.errors?.['minlength']" class="text-danger">
+                  La fecha debe tener como  mínimo 5 caracteres.
+               </div>
+                     
+             </div>
+           </div>   
+           <div class="mb-3">
+             <label for="message-text" class="col-form-label">Descripción:</label>
+             <input formControlName="descripcion"  class="form-control" id="texto" [ngClass]="{'is-invalid':  descripcion?.errors &&  descripcion?.touched, 'is-valid': ! descripcion?.errors &&  descripcion?.touched}">
+             <div *ngIf=" descripcion?.invalid &&  descripcion?.touched">
+               <div *ngIf=" descripcion?.errors?.['required']" class="text-danger">
+                 La descripción es requerida.
+               </div>
+               <div *ngIf=" descripcion?.errors?.['minlength']" class="text-danger">
+                 La descripción debe tener como  mínimo 5 caracteres.
+               </div>
+                    
+             </div>
+           </div>   
+           <div class="mb-3">
+             <label for="message-text" class="col-form-label">Foto:</label>
+             <input formControlName="foto"  class="form-control" id="texto" [ngClass]="{'is-invalid': foto?.errors && foto?.touched, 'is-valid': !foto?.errors && foto?.touched}">
+             <div *ngIf="foto?.invalid && foto?.touched">
+               <div *ngIf="foto?.errors?.['required']" class="text-danger">
+                   La foto es requerida.
+               </div>
+               <div *ngIf="foto?.errors?.['minlength']" class="text-danger">
+                  La ruta de la imagen debe tener como  mínimo 5 caracteres.
+               </div>
+                    
+             </div>
+           </div>   
+           
+         </form>
+       </div>
+       <div class="modal-footer">
+         <button type="button" id="cerrarModalExpLaboral" class="btn btn-secondary" data-bs-dismiss="modal" (click)="limpiarform()">Cerrar</button>
+         <button type="submit" [disabled]="form.invalid" class="btn btn-primary" (click)="addOredit()">Enviar</button>
+       </div>
+     </div>
+   </div>
  </div>

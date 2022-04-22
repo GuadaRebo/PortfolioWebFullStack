@@ -5,7 +5,8 @@
   <fa-icon
   class="float-end fa-icon"  
   [icon]="faPencil"    
-  
+  data-bs-toggle="modal" 
+  data-bs-target="#PersonaModal" 
   
 >      </fa-icon>
   
@@ -34,3 +35,105 @@
 </div>
 </div>
 </div>
+
+<!-- Modal -->
+<div class="modal fade" id="PersonaModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Editar Datos Personales</h5>
+        <button type="button" class="btn-close" (click)="limpiarform()" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="form" >
+           <div class="mb-3">
+            <label for="message-text" class="col-form-label">Nombre:</label>
+            <input formControlName="nombres"  class="form-control" id="texto" [ngClass]="{'is-invalid': nombres?.errors && nombres?.touched, 'is-valid': !nombres?.errors && nombres?.touched}">
+            
+            <div *ngIf="nombres?.invalid && nombres?.touched">
+              <div *ngIf="nombres?.errors?.['required']" class="text-danger">
+                  El nombre es requerido.
+              </div>
+              <div *ngIf="nombres?.errors?.['minlength']" class="text-danger">
+                 El nombre debe tener como  mínimo 5 caracteres.
+              </div>
+             
+            </div>
+          </div>         
+          <div class="mb-3">
+            <label for="message-text" class="col-form-label">Apellido:</label>
+            <input formControlName="apellido"  class="form-control" id="texto" [ngClass]="{'is-invalid': apellido?.errors && apellido?.touched, 'is-valid': !apellido?.errors && apellido?.touched}"
+            >
+            <div *ngIf="apellido?.invalid && apellido?.touched">
+              <div *ngIf="apellido?.errors?.['required']" class="text-danger">
+                  El apellido es requerido.
+              </div>
+              <div *ngIf="apellido?.errors?.['minlength']" class="text-danger">
+                 El apellido debe tener como  mínimo 5 caracteres.
+              </div>
+                  
+            </div>
+          </div>         
+          <div class="mb-3">
+            <label for="message-text" class="col-form-label">Domicilio:</label>
+            <input formControlName="domicilio"  class="form-control" id="texto" [ngClass]="{'is-invalid': domicilio?.errors && domicilio?.touched, 'is-valid': !domicilio?.errors && domicilio?.touched}">
+            <div *ngIf="domicilio?.invalid && domicilio?.touched" >
+              <div *ngIf="domicilio?.errors?.['required']" class="text-danger">
+                  El domicilio es requerido.
+              </div>
+              <div *ngIf="domicilio?.errors?.['minlength']" class="text-danger">
+                 El domicilio debe tener como  mínimo 5 caracteres.
+              </div>
+                    
+            </div>
+          </div>   
+          <div class="mb-3">
+            <label for="message-text" class="col-form-label">Imagen CV:</label>
+            <input formControlName="imagen_cv"  class="form-control" id="texto" [ngClass]="{'is-invalid': imagen_cv?.errors && imagen_cv?.touched, 'is-valid': !imagen_cv?.errors && imagen_cv?.touched}">
+            <div *ngIf="imagen_cv?.invalid && imagen_cv?.touched">
+              <div *ngIf="imagen_cv?.errors?.['required']" class="text-danger">
+                La imagen personal es requerida.
+              </div>
+              <div *ngIf="imagen_cv?.errors?.['minlength']" class="text-danger">
+                La ruta de la imagen debe tener como  mínimo 5 caracteres.
+              </div>
+                   
+            </div>
+          </div>   
+          <div class="mb-3">
+            <label for="message-text" class="col-form-label">Posición:</label>
+            <input formControlName="position"  class="form-control" id="texto" [ngClass]="{'is-invalid': position?.errors && position?.touched, 'is-valid': !position?.errors && position?.touched}">
+            <div *ngIf="position?.invalid && position?.touched">
+              <div *ngIf="position?.errors?.['required']" class="text-danger">
+                  La posición es requerida.
+              </div>
+              <div *ngIf="position?.errors?.['minlength']" class="text-danger">
+                 La posición debe tener como  mínimo 5 caracteres.
+              </div>
+                   
+            </div>
+          </div>   
+          <div class="mb-3">
+            <label for="message-text" class="col-form-label">Imagen Banner:</label>
+            <input formControlName="imagen_banner"  class="form-control" id="texto" [ngClass]="{'is-invalid': imagen_banner?.errors && imagen_banner?.touched, 'is-valid': !imagen_banner?.errors && imagen_banner?.touched}">
+            <div *ngIf="imagen_banner?.invalid && imagen_banner?.touched">
+              <div *ngIf="imagen_banner?.errors?.['required']" class="text-danger">
+                  La imagen del banner es requerida.
+              </div>
+              <div *ngIf="imagen_banner?.errors?.['minlength']" class="text-danger">
+                 La ruta de la imagen debe tener como  mínimo 5 caracteres.
+              </div>
+                    
+            </div>
+          </div>   
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" id="cerrarModalPersona" class="btn btn-secondary" data-bs-dismiss="modal" (click)="limpiarform()">Cerrar</button>
+        <button type="submit" [disabled]="form.invalid" class="btn btn-primary" (click)="addOredit()">Enviar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+

@@ -55,13 +55,19 @@ export class AcercaDeComponent implements OnInit {
   });
   }
 
- //************************MODIFICAR ESTO*************************
+ //*****************HACER QUE EL FORMULARIO SE ABRA CON LA INFORMACION CARGADA*********************
 openEdit(form:FormGroup){
   this.texto?.setValue("texto");
  
 
 
 }
+updateForm() {
+  this.texto?.setValue(this.form.get("{{dato.texto}}"));
+  
+}
+
+
 //PONER UN IF PARA QUE EDITE O AGREGUE SEGUN LA SITUACION
 addOredit(){
 this.guardarAcercade()
