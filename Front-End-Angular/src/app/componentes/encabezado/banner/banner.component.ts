@@ -5,6 +5,8 @@ import {faPencil } from '@fortawesome/free-solid-svg-icons';
 import {Router} from '@angular/router';
 import { Persona } from '../../../models/persona';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { DatabannerService } from 'src/app/servicios/databanner.service';
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-banner',
   templateUrl: './banner.component.html',
@@ -20,10 +22,14 @@ export class BannerComponent implements OnInit {
   form:FormGroup;
 
   constructor(
+    private dataService: DatabannerService,
     private router: Router,
     private datosPersona:PersonaService,
+    private toastr: ToastrService,
     private fb:FormBuilder
+
     ) {this.form =this.fb.group ({
+      id: [''],
       nombres:["", [Validators.required, Validators.minLength(5)]],
       apellido:["", [Validators.required, Validators.minLength(5)]],
       domicilio:["", [Validators.required, Validators.minLength(5)]],
@@ -67,6 +73,38 @@ export class BannerComponent implements OnInit {
   addOredit(){
 this.guardarDatosPersona()
   }
+  onSubmit(){
+    console.log("El boton anda")
+    if (this.form.valid)
+      {
+    let datos:Persona = this.form.value;
+    if (this.form.get('id')?.value == '') {
+      this.datosPersona.addPersona(datos).subscribe(
+        (newPersona: Persona) => {
+          this.datos.push(newPersona);
+          this.toastr.success('La descripción ha sido agregada correctamente!', 'Texto agregado!');
+    }
+      );
+      this.form.reset();
+        document.getElementById("cerrarModalAcercade")?.click();
+
+  } else {
+    let datos:Persona = this.form.value;
+    this.datosPersona.editPersona(datos).subscribe(
+      () => {
+        this.ngOnInit();
+      }
+    )
+  }
+      }
+  else{
+    //alert("Hay errores");
+    this.form.markAllAsTouched();
+  }
+
+  }
+
+
 guardarDatosPersona(){
   this.datosPersona.addPersona(this.form.value).subscribe(data =>{
     this.datos.push(data);
@@ -77,6 +115,25 @@ guardarDatosPersona(){
 
 limpiarform() {
     this.form.reset();
+  }
+
+  onEditBanner(index: number) {
+    let datos: Persona = this.datos[index];
+    this.loadForm(datos);
+    
+  }
+
+  private loadForm(datos: Persona) {
+    this.form.setValue({
+      id: datos.id,
+      nombres: datos.nombres,
+      apellido: datos.apellido,
+      domicilio:datos.domicilio,
+      imagen_cv: datos.imagen_cv,
+      position: datos.position,
+      imagen_banner: datos.imagen_banner
+      
+    })
   }
   
 }

@@ -1,15 +1,26 @@
 
-<div class="division"></div>
 
-<div class="container margenes borde shadow mb-0" width="1337" height="505">
+
+<div class="container  mb-0" width="1337" height="505"  >
 <section id="Acercade" class="about"> 
  
-   <h2>Acerca de</h2>
-   <div class="container margenes mt-0" >
+   <h2 id="Acercade" >Acerca de
+     <fa-icon  
+     class="float-end fa-icon fa-xs mt-1"
+     [icon]="faPlus"
+     data-bs-toggle="modal" 
+     data-bs-target="#ACDModal"
+     (click)="limpiarform()"
+     >
+      
+     </fa-icon>
+   </h2>
+
+   <div class="  mt-0" *ngFor="let dato of datos; let i = index" >
    
       <fa-icon
       class="float-end fa-icon"
-      *ngFor="let dato of datos"
+      
       [icon]="faTrashCan"
       (click)="eliminar(dato.id)"
       
@@ -17,25 +28,23 @@
     <fa-icon
     class="float-end fa-icon"  
     [icon]="faPencil"    
-    
+    (click)="onEditAcercade(i)"
     data-bs-toggle="modal" 
     data-bs-target="#ACDModal" 
     
   >      </fa-icon>
   
-  </div>
+  
  
-  <div id="text-acercade" class="container margenes acerca-text pb-3 pt-3 me-4 list-group-item-action" *ngFor="let dato of datos" data-bs-toggle="modal" 
-  data-bs-target="#ACDModal"  (click)="updateForm()">
+  <div id="Acer" class="  texto  pb-3 pt-3 " >
    
    
     {{dato.texto}}
 
    
 </div>
-  <div>
-     <input id="edit-acercade" type="text" oninput="myFuction2(this.value)" style="display:none">
-  </div>
+</div>
+  
 </section>
 </div>
 
@@ -48,7 +57,9 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <form [formGroup]="form" >
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+          <input type="hidden" name="id" formControlName="id">
+
            <div class="mb-3">
             <label for="message-text" class="col-form-label">Texto nuevo:</label>
             <textarea formControlName="texto"  class="form-control" id="texto"></textarea>
@@ -68,7 +79,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" id="cerrarModalAcercade" class="btn btn-secondary" data-bs-dismiss="modal" (click)="limpiarform()">Cerrar</button>
-        <button type="submit" [disabled]="form.invalid" class="btn btn-primary" (click)="addOredit()">Enviar</button>
+        <button type="submit" (click)="onSubmit()" [disabled]="form.invalid" class="btn btn-primary" >Enviar</button>
       </div>
     </div>
   </div>

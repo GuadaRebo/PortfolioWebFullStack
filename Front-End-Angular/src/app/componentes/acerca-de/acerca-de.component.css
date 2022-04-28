@@ -1,3 +1,14 @@
-.acerca-text {
-    cursor:pointer;
+#Acercade {
+    text-align: left;
+    padding-left: 0;
+    
+}
+
+.texto {
+    
+    font-weight: Lighter;
+    font-size: 20px;
+    text-align: left;
+    padding-left: 0;
+    
 }

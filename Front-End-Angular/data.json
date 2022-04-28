@@ -11,19 +11,19 @@
   "persona": [
     {
       "id": "1",
-      "nombres": "Guadalupe",
+      "nombres": "Guada",
       "apellido": "Reboiro",
       "domicilio": "Rosario (Argentina)",
-      "imagen_cv": "(../../../../assets/fotocv.png)",
+      "imagen_cv": "fotocv.png",
       "position": "Full Stack Developer Jr.",
-      "imagen_banner": "(../../../../assets/luces.jpg)"
+      "imagen_banner": "luces.jpg"
     }
   ],
   "acercade": [
     {
-      "texto": "Hola! Mi nombre es Guadalupe estoy dando mis primeros pasos en el área de Tecnología haciendo numeroso cursos para capacitarme y poder iniciar mi carrera profesional lo más pronto posible.",
-      "id": 1
-    }
+      "id": 1,
+    "texto": "Hola! Mi nombre es Guadalupe estoy dando mis primeros pasos en el área de Tecnología haciendo numeroso cursos para capacitarme y poder iniciar mi carrera profesional lo más pronto posible."
+      } 
   ],
   "expLaboral": [
     {
@@ -32,15 +32,14 @@
       "empresa": "",
       "fecha": "junio 2018 - actualidad",
       "descripcion": "Clases particulares de contabilidad y matemática a alumnos de secundaria y emprendimiento de venta de artículos de confección propia.",
-      "foto": "../../../../assets/serfreelance.jpg"
+      "foto": "serfreelance.png"
     },
     {
       "id": 2,
       "posicion": "Senior de Auditoría",
-      "empresa": "Deloitte",
       "fecha": "enero 2014 - mayo 2018",
       "descripcion": "Tareas de auditoría externa en clientes dentro y fuera de Rosario (relevamiento y análisis de documentación, conciliación de diferencias, armado de balances, inventarios, arqueos). Encargada de equipos de trabajos (4 personas a cargo).",
-      "foto": ""
+      "foto": "logo deloitte.png"
     }
   ],
   "contacto": [

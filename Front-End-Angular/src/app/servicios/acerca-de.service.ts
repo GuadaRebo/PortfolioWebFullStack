@@ -2,36 +2,38 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpHandler} from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Acercade } from '../models/acerca-de';
+import { config } from '../models/config';
 
 
+const httpOptions = {
+  headers: new HttpHeaders({
+    'Content-Type': 'aplication/json',
+  })
+}
 
 @Injectable({
   providedIn: 'root'
 })
 export class AcercaDeService {
-private apiURL =' http://localhost:3000/acercade'
+
  
 constructor(
     private http: HttpClient) {}
 
-  getAcercaDe():Observable <any> {
-    return this.http.get(`${this.apiURL}`);
+  getAcercaDe():Observable <Acercade[]> {
+    return this.http.get<any>(config.baseUrl + "acercade");
   }
 
   addAcercaDe(acercade: Acercade): Observable<Acercade>{
-    return this.http.post<Acercade>(`${this.apiURL}`, acercade);
+    return this.http.post<any>(config.baseUrl + "acercade", acercade, httpOptions);
   }
 
-  editAcercade(acercade: Acercade, id: number): Observable<Acercade>{
-    return this.http.put<Acercade>(
-      `${this.apiURL}/${id}`,
-      acercade);
+  editAcercade(acercade: Acercade): Observable<any>{
+    return this.http.put<any>(config.baseUrl + "acercade", acercade, httpOptions);
   }
-  obtenerTexto(id: number): Observable<any>{
-    return this.http.get(`${this.apiURL}`);
-  }
+  
     deleteAcercade(id: number): Observable<any> {
-      return this.http.delete(`${this.apiURL}/${id}`);
+      return this.http.delete(config.baseUrl + "acercade/" + id);
     }
 
 

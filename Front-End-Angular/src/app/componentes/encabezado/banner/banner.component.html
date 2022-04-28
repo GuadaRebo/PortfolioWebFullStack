@@ -1,4 +1,4 @@
-<div class="imagenbanner position-relative">
+<div class="imagenbanner position-relative" *ngFor="let dato of datos; let i = index">
   <div class="container margenes mt-0" >
    
    
@@ -7,7 +7,7 @@
   [icon]="faPencil"    
   data-bs-toggle="modal" 
   data-bs-target="#PersonaModal" 
-  
+  (click)="onEditBanner(i)"
 >      </fa-icon>
   
 </div>
@@ -28,8 +28,8 @@
             </div>
           </nav>
     </div>
-    <div *ngFor="let dato of datos">
-<div class="container responsive-section banner-borde position-absolute top-50 start-50 translate-middle" >
+    <div >
+<div class="container responsive-section  banner-borde position-absolute top-50 start-50 translate-middle" >
 <h1 class="banner-txt">{{dato.nombres}} {{dato.apellido}}</h1>
 <p class="banner-txt2">{{dato.position}}</p>
 </div>
@@ -46,6 +46,7 @@
       </div>
       <div class="modal-body">
         <form [formGroup]="form" >
+          <input type="hidden" name="id" formControlName="id">
            <div class="mb-3">
             <label for="message-text" class="col-form-label">Nombre:</label>
             <input formControlName="nombres"  class="form-control" id="texto" [ngClass]="{'is-invalid': nombres?.errors && nombres?.touched, 'is-valid': !nombres?.errors && nombres?.touched}">

@@ -26,14 +26,14 @@
      <div class="container margenes pt-4">
        <div class="row">
          <div class="col col-xl-2 me-0 pe-0"  >
-            <img [src]="dato.foto" alt="" width="148" height="137">         
+            <img src="/assets/{{dato.foto}}" alt="" width="148" height="137">         
          </div>
           <div class="col col-xl-10">
              <div class="expyeduc ms-0 ps-0 me-4"  >
                 <h3>{{dato.posicion}}  </h3>
                 <h5>{{dato.fecha}}</h5>
                 <div class=" ">
-                 <h3 class="mt-2">  {{ dato.empresa}}</h3>
+                
                  <p class="pb-3 acerca-text mt-0" >  {{dato.descripcion}}</p>
                 </div>
              </div>
@@ -85,15 +85,7 @@
               
              </div>
            </div>         
-           <div class="mb-3">
-             <label for="message-text" class="col-form-label">Empresa:</label>
-             <input formControlName="empresa"  class="form-control" id="texto" [ngClass]="{'is-invalid': empresa?.errors && empresa?.touched, 'is-valid': !empresa?.errors && empresa?.touched}"
-             >
-             <div *ngIf="empresa?.invalid && empresa?.touched">
                
-                   
-             </div>
-           </div>         
            <div class="mb-3">
              <label for="message-text" class="col-form-label">Período:</label>
              <input formControlName="fecha"  class="form-control" id="texto" [ngClass]="{'is-invalid': fecha?.errors && fecha?.touched, 'is-valid': !fecha?.errors && fecha?.touched}">
@@ -121,7 +113,7 @@
              </div>
            </div>   
            <div class="mb-3">
-             <label for="message-text" class="col-form-label">Foto:</label>
+             <label for="message-text" class="col-form-label">Logo Empresa:</label>
              <input formControlName="foto"  class="form-control" id="texto" [ngClass]="{'is-invalid': foto?.errors && foto?.touched, 'is-valid': !foto?.errors && foto?.touched}">
              <div *ngIf="foto?.invalid && foto?.touched">
                <div *ngIf="foto?.errors?.['required']" class="text-danger">

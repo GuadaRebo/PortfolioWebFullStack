@@ -20,7 +20,6 @@ export class ExperienciaLaboralComponent implements OnInit {
     private fb:FormBuilder,
   ) {this.form =this.fb.group ({
     posicion:["", [Validators.required, Validators.minLength(5)]],
-    empresa:[""],
     fecha:["", [Validators.required, Validators.minLength(5)]],
     descripcion:["", [Validators.required, Validators.minLength(5)]],
     foto:["", [Validators.required, Validators.minLength(5)]],
@@ -31,10 +30,7 @@ export class ExperienciaLaboralComponent implements OnInit {
   {
     return this.form.get("posicion");
   }
-  get empresa()
-  {
-    return this.form.get("empresa");
-  }
+  
   get fecha()
   {
     return this.form.get("fecha");

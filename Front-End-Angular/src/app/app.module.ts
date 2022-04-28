@@ -27,6 +27,8 @@ import {AutenticacionService} from '../app/servicios/autenticacion.service';
 import { InterceptorService} from '../app/servicios/interceptor.service';
 import { ContactoService} from '../app/servicios/contacto.service';
 import { ExpLaboralService} from '../app/servicios/exp-laboral.service';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -54,6 +56,8 @@ import { ExpLaboralService} from '../app/servicios/exp-laboral.service';
     HttpClientModule,
     FontAwesomeModule,
     ReactiveFormsModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot(),
   ],
   providers: [AcercaDeService, PersonaService, AutenticacionService, ContactoService, ExpLaboralService,
   { provide: HTTP_INTERCEPTORS, useClass:InterceptorService, multi: true}],
