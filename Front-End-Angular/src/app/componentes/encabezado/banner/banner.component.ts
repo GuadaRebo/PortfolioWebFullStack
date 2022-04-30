@@ -70,40 +70,18 @@ export class BannerComponent implements OnInit {
     });
   }
 
-  addOredit(){
-this.guardarDatosPersona()
-  }
-  onSubmit(){
-    console.log("El boton anda")
-    if (this.form.valid)
-      {
+  edit(){
     let datos:Persona = this.form.value;
-    if (this.form.get('id')?.value == '') {
-      this.datosPersona.addPersona(datos).subscribe(
-        (newPersona: Persona) => {
-          this.datos.push(newPersona);
-          this.toastr.success('La descripción ha sido agregada correctamente!', 'Texto agregado!');
-    }
-      );
-      this.form.reset();
-        document.getElementById("cerrarModalAcercade")?.click();
-
-  } else {
-    let datos:Persona = this.form.value;
+    
     this.datosPersona.editPersona(datos).subscribe(
       () => {
+        
         this.ngOnInit();
+        this.toastr.success('Sus datos han sido actualizados correctamente!', 'Datos actualizados!'); 
       }
     )
   }
-      }
-  else{
-    //alert("Hay errores");
-    this.form.markAllAsTouched();
-  }
-
-  }
-
+  
 
 guardarDatosPersona(){
   this.datosPersona.addPersona(this.form.value).subscribe(data =>{

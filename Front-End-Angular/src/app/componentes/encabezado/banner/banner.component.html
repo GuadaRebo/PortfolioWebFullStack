@@ -1,4 +1,5 @@
 <div class="imagenbanner position-relative" *ngFor="let dato of datos; let i = index">
+  
   <div class="container margenes mt-0" >
    
    
@@ -131,7 +132,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" id="cerrarModalPersona" class="btn btn-secondary" data-bs-dismiss="modal" (click)="limpiarform()">Cerrar</button>
-        <button type="submit" [disabled]="form.invalid" class="btn btn-primary" (click)="addOredit()">Enviar</button>
+        <button type="submit" [disabled]="form.invalid" data-bs-dismiss="modal" class="btn btn-primary" (click)="edit()">Enviar</button>
       </div>
     </div>
   </div>

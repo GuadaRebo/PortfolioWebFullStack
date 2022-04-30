@@ -51,13 +51,7 @@ export class AcercaDeComponent implements OnInit {
     });
     
   }
-  private reloadData() {
-    this.datosAcercaDe.getAcercaDe().subscribe((data) => {
-        this.datos = data;
-      }
-    );
-  }
-
+  
   
   eliminar(id:any){
     if (confirm("Estás seguro de que quiere eliminar el texto?")) {
@@ -80,17 +74,22 @@ export class AcercaDeComponent implements OnInit {
       this.datosAcercaDe.addAcercaDe(datos).subscribe(
         (newAcercade: Acercade) => {
           this.datos.push(newAcercade);
-          this.toastr.success('La descripción ha sido agregada correctamente!', 'Texto agregado!');
+          this.form.reset();
+          document.getElementById("cerrarModalAcercade")?.click();
+          
+          
     }
       );
-      this.form.reset();
-        document.getElementById("cerrarModalAcercade")?.click();
+     
 
   } else {
     let datos:Acercade = this.form.value;
     this.datosAcercaDe.editAcercade(datos).subscribe(
       () => {
         this.ngOnInit();
+        this.form.reset();
+        document.getElementById("cerrarModalAcercade")?.click();
+        this.toastr.success('La descripción ha sido actualizada correctamente!', 'Texto actualizado!');
       }
     )
   }
