@@ -4,3 +4,28 @@
     padding: 0 !important;
     color: #000000 !important;
 }
+
+.drop-list {
+   
+    
+    
+    display: block;
+    background: white;
+
+    overflow: hidden;
+}
+
+.drag-box {
+    
+  border-bottom: solid 1px #ccc;
+
+ 
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+  cursor: move;
+  background: white;
+  font-size: 14px;
+
+}

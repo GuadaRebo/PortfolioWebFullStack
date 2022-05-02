@@ -6,6 +6,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { Educacion } from 'src/app/models/educacion';
 import { EducacionService } from 'src/app/servicios/educacion.service';
+import { CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
 @Component({
   selector: 'app-educacion',
   templateUrl: './educacion.component.html',
@@ -123,4 +124,13 @@ eliminar(id:any){
   limpiarform() {
     this.form.reset();
   }
+
+  onDrop(event: CdkDragDrop<string []>) {
+    moveItemInArray(
+      this.datos,
+      event.previousIndex,
+      event.currentIndex
+    )
+  }
+
 }

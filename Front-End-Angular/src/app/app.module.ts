@@ -30,6 +30,8 @@ import { ExpLaboralService} from '../app/servicios/exp-laboral.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { EducacionService } from './servicios/educacion.service';
+import { DragDropModule } from '@angular/cdk/drag-drop';
+import { HabilidadService } from './servicios/habilidad.service';
 
 @NgModule({
   declarations: [
@@ -59,8 +61,9 @@ import { EducacionService } from './servicios/educacion.service';
     ReactiveFormsModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
+    DragDropModule,
   ],
-  providers: [AcercaDeService, PersonaService, AutenticacionService, ContactoService, ExpLaboralService, EducacionService,
+  providers: [AcercaDeService, PersonaService, AutenticacionService, ContactoService, ExpLaboralService, EducacionService, HabilidadService,
   { provide: HTTP_INTERCEPTORS, useClass:InterceptorService, multi: true}],
   bootstrap: [AppComponent]
 })

@@ -1,6 +1,9 @@
 
  <div class="division"></div>
- <div class="container margenes borde shadow" width="1337" height="505">
+ <div cdkDropList 
+      (cdkDropListDropped)="onDrop($event)"
+      (cdkDropListData)="datos"
+      class="container margenes borde shadow drop-list" width="1337" height="505">
   
      <h2 id="acerca" class="about">Educación
       <fa-icon  
@@ -14,7 +17,7 @@
       </fa-icon>
      </h2>
 
-     <section id="acerca" class="about" *ngFor="let dato of datos; let i = index"> 
+     <section id="acerca" class="about drag-box" cdkDrag *ngFor="let dato of datos; let i = index"> 
       <div class="container margenes mt-0" width="21" height="21">
          <fa-icon
          class="float-end fa-icon"
@@ -36,7 +39,7 @@
     </div>
   
 
-     <div class="container margenes pt-4">
+     <div  class="container margenes pt-4 drag-box">
        <div class="row">
          <div class="col col-xl-2 me-0 pe-0 pb-3">
             <img src="/assets/{{dato.logo_institucion}}" alt="" width="107" height="88">         

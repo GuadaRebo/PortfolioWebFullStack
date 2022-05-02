@@ -66,7 +66,7 @@ export class AcercaDeComponent implements OnInit {
  
 
   onSubmit(){
-    console.log("El boton anda")
+    
     if (this.form.valid)
       {
     let datos:Acercade = this.form.value;
