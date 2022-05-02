@@ -10,12 +10,13 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:4200/")
+@CrossOrigin(origins = {"http://localhost:4200/"})
 public class PersonaController {
     
     @Autowired
@@ -25,8 +26,7 @@ public class PersonaController {
     @GetMapping ("/persona/ver")
     @ResponseBody
     public List<Persona> verPersonas () {
-        System.out.println("");
-       return persoServ.verPersonas();
+        return persoServ.verPersonas();
     }
     
      @PostMapping ("/persona/nueva")
@@ -34,9 +34,21 @@ public class PersonaController {
        persoServ.crearPersona(persona);
     }
     
-    @DeleteMapping ("/delete/{id}")
+    @DeleteMapping ("delete/{id}")
     public void borrarPersona (@PathVariable Long id) {
         persoServ.borrarPersona(id);
         
     }
+    @GetMapping ("/persona/{id}")
+    @ResponseBody
+    public Persona buscarPersonaPorId(@PathVariable Long id){
+        return persoServ.buscarPersona( id);
+    }
+    
+    @PutMapping ("/persona")
+    public void actualizarPersona (@RequestBody Persona persona)   {
+        persoServ.actualizarPersona(persona);         
+    }        
+        
+
 }
