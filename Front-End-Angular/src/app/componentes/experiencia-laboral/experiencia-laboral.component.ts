@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import {faTrashCan } from '@fortawesome/free-solid-svg-icons';
 import {faPencil } from '@fortawesome/free-solid-svg-icons';
+import {faPlus } from '@fortawesome/free-solid-svg-icons';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ExpLaboralService} from 'src/app/servicios/exp-laboral.service';
 import { ExpLaboral } from '../../models/expLaboral';
+import { ToastrService } from 'ngx-toastr';
+
 @Component({
   selector: 'app-experiencia-laboral',
   templateUrl: './experiencia-laboral.component.html',
@@ -12,13 +15,16 @@ import { ExpLaboral } from '../../models/expLaboral';
 export class ExperienciaLaboralComponent implements OnInit {
   faTrashCan = faTrashCan;
   faPencil = faPencil;
+  faPlus = faPlus;
   usuarioAutenticado:boolean=true;
   form:FormGroup;
   datos: ExpLaboral[] = []
   constructor(
     private datosExpLaboral:ExpLaboralService,
     private fb:FormBuilder,
+    private toastr: ToastrService,
   ) {this.form =this.fb.group ({
+    id: [''],
     posicion:["", [Validators.required, Validators.minLength(5)]],
     fecha:["", [Validators.required, Validators.minLength(5)]],
     descripcion:["", [Validators.required, Validators.minLength(5)]],
@@ -51,15 +57,42 @@ export class ExperienciaLaboralComponent implements OnInit {
   })
 }
 
-addOredit(){
-  this.guardarExpLaboral()
+
+  onSubmit(){
+    console.log("El boton anda")
+    if (this.form.valid)
+      {
+    let datos: ExpLaboral = this.form.value;
+    if (this.form.get('id')?.value == '') {
+      console.log(datos)
+      this.datosExpLaboral.addExpLaboral(datos).subscribe(
+        (newExpLaboral: ExpLaboral) => {
+          this.datos.push(newExpLaboral);
+          this.form.reset();
+          document.getElementById("cerrarModalExpLaboral")?.click();
+          
+          
     }
-  guardarExpLaboral(){
-    this.datosExpLaboral.addExpLaboral(this.form.value).subscribe(data =>{
-      this.datos.push(data);
-      this.form.reset();
-      document.getElementById("cerrarModalExpLaboral")?.click();
-    })
+      );
+     
+
+  } else {
+    let datos:ExpLaboral = this.form.value;
+    this.datosExpLaboral.editExpLaboral(datos).subscribe(
+      () => {
+        this.ngOnInit();
+        this.form.reset();
+        document.getElementById("cerrarModalExpLaboral")?.click();
+        this.toastr.success('Los datos han sido actualizados correctamente!', 'Información actualizada!');
+      }
+    )
+  }
+      }
+  else{
+    //alert("Hay errores");
+    this.form.markAllAsTouched();
+  }
+
   }
 
 
@@ -68,10 +101,29 @@ addOredit(){
   }
 
   eliminar(id:any){
+    if (confirm("Estás seguro de que quiere eliminar el texto?")) {
     this.datosExpLaboral.deleteExpLaboral(id).subscribe(data => {
     this.ngOnInit();
       this.datos =data;
+      this.toastr.success('Los datos han sido eliminados correctamente!', 'Información eliminada!');
     });
     }
+  }
+    onEditExpLaboral(index: number) {
+      let datos: ExpLaboral = this.datos[index];
+      this.loadForm(datos);
+    }
+  
+    private loadForm(datos: ExpLaboral) {
+      this.form.setValue({
+        id: datos.id,
+        posicion: datos.posicion,
+        fecha: datos.fecha,
+        descripcion: datos.descripcion,
+        foto: datos.foto
+        
+      })
+    }
+
 
 }

@@ -22,14 +22,13 @@
   "acercade": [
     {
       "id": 1,
-    "texto": "Hola! Mi nombre es Guadalupe estoy dando mis primeros pasos en el área de Tecnología haciendo numeroso cursos para capacitarme y poder iniciar mi carrera profesional lo más pronto posible."
-      } 
+      "texto": "Hola! Mi nombre es Guadalupe estoy dando mis primeros pasos en el área de Tecnología haciendo numeroso cursos para capacitarme y poder iniciar mi carrera profesional lo más pronto posible."
+    }
   ],
   "expLaboral": [
     {
       "id": 1,
       "posicion": "Freelance",
-      "empresa": "",
       "fecha": "junio 2018 - actualidad",
       "descripcion": "Clases particulares de contabilidad y matemática a alumnos de secundaria y emprendimiento de venta de artículos de confección propia.",
       "foto": "serfreelance.png"

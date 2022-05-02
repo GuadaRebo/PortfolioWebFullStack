@@ -1,75 +1,135 @@
 
  <div class="division"></div>
  <div class="container margenes borde shadow" width="1337" height="505">
-  <section id="acerca" class="about"> 
-     <h2>Educación</h2>
-     <div class="container margenes mt-0" width="21" height="21">
-       <img src="assets/lapizedicion.png" class="float-end" alt="Lápiz para edición" width="18" height="18">
+  
+     <h2 id="acerca" class="about">Educación
+      <fa-icon  
+      class="float-end fa-icon fa-xs mt-1"
+      [icon]="faPlus"
+      data-bs-toggle="modal" 
+      data-bs-target="#EducacionModal"
+      (click)="limpiarform()"
+      >
+       
+      </fa-icon>
+     </h2>
+
+     <section id="acerca" class="about" *ngFor="let dato of datos; let i = index"> 
+      <div class="container margenes mt-0" width="21" height="21">
+         <fa-icon
+         class="float-end fa-icon"
+         
+         [icon]="faTrashCan"
+         (click)="eliminar(dato.id)"
+         
+       >      </fa-icon>
+         
+         
+         <fa-icon
+         class="float-end fa-icon"  
+         [icon]="faPencil"
+         (click)="onEditEducacion(i)"
+         data-bs-toggle="modal" 
+         data-bs-target="#EducacionModal" 
+         
+       >      </fa-icon>
     </div>
+  
+
      <div class="container margenes pt-4">
        <div class="row">
-         <div class="col col-xl-2 me-0 pe-0">
-            <img src="assets/programacion.jpg" alt="" width="148" height="137">         
+         <div class="col col-xl-2 me-0 pe-0 pb-3">
+            <img src="/assets/{{dato.logo_institucion}}" alt="" width="107" height="88">         
          </div>
           <div class="col col-xl-10">
-             <div class="expyeduc ms-0 ps-0 me-4">
-                <h3>Cursos de Programación</h3>
+             <div class="expyeduc ms-0 ps-0 me-4 ">
+                <h3>{{dato.titulo}}</h3>
                 <div class="acerca-text">
-                   <ul>
- <li> Curso #YoProgramo de Argentina Programa. Actualmente cursando.</li>
- <li> Curso Escuela de Python 2021: Aprende Python 3.9+ de cero a Master en Udemy. Actualmente cursando.</li>
- <li> Curso #SéProgramar de Argentina Programa. Diciembre 2021.</li>
- <li> Curso Scientific Computing with Python en FreeCodeCamp. Noviembre 2021.</li>
- <li> Curso de HTML, CSS y JavaScript para principiantes en Developer Mozilla. Septimbre 2021.</li>
+                   <ul >
+ <li> {{dato.expedido_por}}. {{dato.periodo}} </li>
+ 
  </ul>
                  
                 </div>
              </div>
     </div>
     </div>
-    </div>
-    <div class="container margenes mt-0" width="21" height="21">
-       <img src="assets/lapizedicion.png" class="float-end" alt="Lápiz para edición" width="18" height="18">
-    </div>
-     <div class="container margenes pt-4">
-       <div class="row">
-         <div class="col col-xl-2 me-0 pe-0">
-            <img src="assets/logoUNR.jpg" alt="" width="148" height="137">         
-         </div>
-          <div class="col col-xl-10">
-             <div class="expyeduc ms-0 ps-0">
-                <h3>Contador Público</h3>
-                <div class="acerca-text">
-                   <ul>
-                  <li> Facultad de Ciencias Económicas y Estadística (2006 - 2013).</li>
-                  <li> Universidad Nacional de Rosario.</li>
-                </ul>
-                </div>
-             </div>
-    </div>
-    </div>
-    </div>
-    <div class="container margenes mt-0" width="21" height="21">
-       <img src="assets/lapizedicion.png" class="float-end" alt="Lápiz para edición" width="18" height="18">
-    </div>
-     <div class="container margenes pt-4">
-       <div class="row">
-         <div class="col col-xl-2 me-0 pe-0">
-            <img src="assets/logoCEL.jpg" alt="" width="148" height="137">         
-         </div>
-          <div class="col col-xl-10">
-             <div class="expyeduc ms-0 ps-0">
-                <h3>Educación Polimodal</h3>
-                <div class="acerca-text">
-                  <ul class="">
-                   <li class="">Centro Educativo Latinoamericano (2003 - 2005). </li> 
-                  <li class=""> Escuela de Enseñanza Media Particular Incorporada Nº 8059.</li> 
-                  <li class=""> Modalidad en Economía y Gestión de las Organizaciones. </li>
-                </ul>
-                </div>
-             </div>
-    </div>
-    </div>
+    
     </div>
   </section>
+ </div>
+ <!-- Modal -->
+ <div class="modal fade" id="EducacionModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+   <div class="modal-dialog">
+     <div class="modal-content">
+       <div class="modal-header">
+         <h5 class="modal-title" id="exampleModalLabel">Editar Educación</h5>
+         <button type="button" class="btn-close" (click)="limpiarform()" data-bs-dismiss="modal" aria-label="Close"></button>
+       </div>
+       <div class="modal-body">
+         <form [formGroup]="form" (ngSubmit)="onSubmit()">
+          <input type="hidden" name="id" formControlName="id">
+            <div class="mb-3">
+             <label for="message-text" class="col-form-label">Título:</label>
+             <input formControlName="titulo"  class="form-control" id="texto" [ngClass]="{'is-invalid': titulo?.errors && titulo?.touched, 'is-valid': !titulo?.errors && titulo?.touched}">
+             
+             <div *ngIf="titulo?.invalid && titulo?.touched">
+               <div *ngIf="titulo?.errors?.['required']" class="text-danger">
+                   El título es requerido.
+               </div>
+               <div *ngIf="titulo?.errors?.['minlength']" class="text-danger">
+                  El título debe tener como  mínimo 5 caracteres.
+               </div>
+              
+             </div>
+           </div>         
+               
+           <div class="mb-3">
+             <label for="message-text" class="col-form-label">Expedido por:</label>
+             <input formControlName="expedido_por"  class="form-control" id="texto" [ngClass]="{'is-invalid': expedido_por?.errors && expedido_por?.touched, 'is-valid': !expedido_por?.errors && expedido_por?.touched}">
+             <div *ngIf="expedido_por?.invalid && expedido_por?.touched" >
+               <div *ngIf="expedido_por?.errors?.['required']" class="text-danger">
+                   La institución es requerida.
+               </div>
+               <div *ngIf="expedido_por?.errors?.['minlength']" class="text-danger">
+                  La institución debe tener como  mínimo 5 caracteres.
+               </div>
+                     
+             </div>
+           </div>   
+           <div class="mb-3">
+             <label for="message-text" class="col-form-label">Período:</label>
+             <input formControlName="periodo"  class="form-control" id="texto" [ngClass]="{'is-invalid':  periodo?.errors &&  periodo?.touched, 'is-valid': ! periodo?.errors &&  periodo?.touched}">
+             <div *ngIf=" periodo?.invalid &&  periodo?.touched">
+               <div *ngIf=" periodo?.errors?.['required']" class="text-danger">
+                 El período es requerido.
+               </div>
+               <div *ngIf=" periodo?.errors?.['minlength']" class="text-danger">
+                 El período debe tener como  mínimo 5 caracteres.
+               </div>
+                    
+             </div>
+           </div>   
+           <div class="mb-3">
+             <label for="message-text" class="col-form-label">Logo Institución:</label>
+             <input formControlName="logo_institucion"  class="form-control" id="texto" [ngClass]="{'is-invalid': logo_institucion?.errors && logo_institucion?.touched, 'is-valid': !logo_institucion?.errors && logo_institucion?.touched}">
+             <div *ngIf="logo_institucion?.invalid && logo_institucion?.touched">
+               <div *ngIf="logo_institucion?.errors?.['required']" class="text-danger">
+                   El logo de la institución es requerido.
+               </div>
+               <div *ngIf="logo_institucion?.errors?.['minlength']" class="text-danger">
+                  La ruta de la imagen debe tener como  mínimo 5 caracteres.
+               </div>
+                    
+             </div>
+           </div>   
+           
+         </form>
+       </div>
+       <div class="modal-footer">
+         <button type="button" id="cerrarModalEducacion" class="btn btn-secondary" data-bs-dismiss="modal" (click)="limpiarform()">Cerrar</button>
+         <button type="submit" id="cerrarModalEducacion" [disabled]="form.invalid" class="btn btn-primary" (click)="onSubmit()">Enviar</button>
+       </div>
+     </div>
+   </div>
  </div>
