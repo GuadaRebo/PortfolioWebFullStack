@@ -4,8 +4,9 @@ import {faPencil } from '@fortawesome/free-solid-svg-icons';
 import {Router} from '@angular/router';
 import { Persona } from '../../../models/persona';
 import { PersonaService } from 'src/app/servicios/persona.service';
-import { DatabannerService } from 'src/app/servicios/databanner.service';
+
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-fotocv',
   templateUrl: './fotocv.component.html',
@@ -18,9 +19,10 @@ export class FotocvComponent implements OnInit {
   datos: Persona[] = []
   usuarioAutenticado:boolean=true;
   constructor(
-    public dataService: DatabannerService,
+    
     private router: Router,
     private datosPersona:PersonaService,
+    private toastr: ToastrService,
     private fb:FormBuilder
   ) {this.form =this.fb.group ({
     id: [''],
@@ -77,14 +79,22 @@ export class FotocvComponent implements OnInit {
       domicilio:datos.domicilio,
       imagen_cv: datos.imagen_cv,
       position: datos.position,
-      imagen_banner: datos.imagen_banner
+      imagen_banner: datos.imagen_banner,
       
     })
   }
   limpiarform() {
     this.form.reset();
   }
-  addOredit(){
-
+  edit(){
+    let datos:Persona = this.form.value;
+    
+    this.datosPersona.editPersona(datos).subscribe(
+      () => {
+        
+        this.ngOnInit();
+        this.toastr.success('Sus datos han sido actualizados correctamente!', 'Datos actualizados!'); 
+      }
+    )
   }
 }

@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ContactoService} from '../../servicios/contacto.service';
 import { Contacto} from '../../models/contacto';
+import { ToastrService } from 'ngx-toastr';
+
 @Component({
   selector: 'app-contacto',
   templateUrl: './contacto.component.html',
@@ -11,7 +13,10 @@ export class ContactoComponent implements OnInit {
   datos:Contacto[] = []; 
 form: FormGroup;
 
-  constructor(private fb: FormBuilder, private contactoService: ContactoService) {
+  constructor(private fb: FormBuilder, 
+    private contactoService: ContactoService,
+    private toastr: ToastrService, 
+    ) {
     this.form = this.fb.group(
       {
         
@@ -44,7 +49,7 @@ form: FormGroup;
     this.contactoService.addContacto(this.form.value).subscribe(data => {
       this.datos.push(data);
       this.form.reset();
-      
+      this.toastr.success('Su mensaje ha sido enviado correctamente!', 'Gracias por contactarte!');
     })
   }
 }

@@ -27,89 +27,28 @@
       [icon]="faPencil"    
       (click)="onEditHabilidad(i)"
       data-bs-toggle="modal" 
-      data-bs-target="#ACDModal" 
+      data-bs-target="#HabilidadModal" 
       
     >      </fa-icon>
      
     
        
-     <div class="container margenes pt-4">
+     <div class="container margenes pt-1 pb-3">
        <div class="row">
-         <div class="col col-xl-4 habilidades">
+         <div class="col col-xl-4 habilidades pt-3">
             {{dato.habilidad}}        
          </div>
           <div class="col col-xl-8">
      <div class="progress" style="height:20px">
        <div class="progress-bar bg-warning" role="progressbar" 
        [ngStyle]="{'width': dato.porcentaje +'%'}" 
-       [attr.aria-valuenow]="dato.porcentaje" aria-valuemin="0" aria-valuemax="80">90%
+       [attr.aria-valuenow]="dato.porcentaje" aria-valuemin="0" aria-valuemax="80">{{dato.porcentaje}}%
       </div>
      </div>
     </div>
     </div>
   </div>
     </div>
- <!--   <div class="container margenes">
-       <div class="row">
-         <div class="col col-xl-4 habilidades">
-            Orientación a resultados       
-         </div>
-          <div class="col col-xl-8">
-     <div class="progress" style="height:20px">
-       <div class="progress-bar bg-warning" role="progressbar" style="width:86%;height:20px" aria-valuenow="90" aria-valuemin="0" aria-valuemax="80">86%</div>
-     </div>
-    </div>
-    </div>
-    </div>
-    <div class="container margenes">
-       <div class="row">
-         <div class="col col-xl-4 habilidades">
-            Capacidad de adaptación       
-         </div>
-          <div class="col col-xl-8">
-     <div class="progress" style="height:20px">
-       <div class="progress-bar bg-warning" role="progressbar" style="width:88%;height:20px" aria-valuenow="90" aria-valuemin="0" aria-valuemax="80">88%</div>
-     </div>
-    </div>
-    </div>
-    </div>
-    <div class="container margenes">
-       <div class="row">
-         <div class="col col-xl-4 habilidades">
-            Proactividad       
-         </div>
-          <div class="col col-xl-8">
-     <div class="progress" style="height:20px">
-       <div class="progress-bar bg-warning" role="progressbar" style="width:93%;height:20px" aria-valuenow="90" aria-valuemin="0" aria-valuemax="80">93%</div>
-     </div>
-    </div>
-    </div>
-    </div>
-    <div class="container margenes">
-       <div class="row">
-         <div class="col col-lg-4 habilidades">
-            Planificación de tareas       
-         </div>
-          <div class="col col-lg-8">
-     <div class="progress" style="height:20px">
-       <div class="progress-bar bg-warning" role="progressbar" style="width:95%;height:20px" aria-valuenow="90" aria-valuemin="0" aria-valuemax="80">95%</div>
-     </div>
-    </div>
-    </div>
-    </div>
-    <div class="container margenes">
-       <div class="row pb-3">
-         <div class="col col-xl-4 habilidades">
-            Inglés       
-         </div>
-          <div class="col col-xl-8">
-     <div class="progress" style="height:20px">
-       <div class="progress-bar bg-warning" role="progressbar" style="width:75%;height:20px" aria-valuenow="90" aria-valuemin="0" aria-valuemax="80">75%</div>
-     </div>
-    </div>
-    </div>
-    </div> -->
-     
  
   </section> 
  </div>

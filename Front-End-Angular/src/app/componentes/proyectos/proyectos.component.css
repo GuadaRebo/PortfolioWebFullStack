@@ -1,11 +1,19 @@
-.card-text1 {
+.card-title {
     font-weight: Bold;
     font-size: 16px;
     opacity: 1;
     color: #1d8ea6;
     text-align: center;
 }
-.card-text2 {
+.card-title2 {
+  
+  font-size: 12px;
+  opacity: 1;
+  
+  text-align: center;
+}
+
+.card-text {
     font-size: 14px;
   opacity: 1;
   color: #5b5b5b;

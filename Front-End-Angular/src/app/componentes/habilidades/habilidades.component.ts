@@ -27,7 +27,7 @@ export class HabilidadesComponent implements OnInit {
     this.form =this.fb.group ({
       id: [''],
       habilidad: ["", [Validators.required, Validators.minLength(5)]],
-      porcentaje:["", [Validators.required, Validators.pattern("[0-9]"), Validators.min(10), Validators.max(100)]]
+      porcentaje:["", [Validators.required, Validators.pattern("^[0-9]*$"), Validators.min(10), Validators.max(100)]]
     })
    }
    get habilidad()

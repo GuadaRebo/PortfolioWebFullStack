@@ -60,7 +60,7 @@ export class EducacionComponent implements OnInit {
   }
 
 onSubmit() {
-  console.log("El boton anda")
+  
   if (this.form.valid)
     {
   let datos: Educacion = this.form.value;
@@ -112,7 +112,7 @@ private loadForm(datos: Educacion) {
 }
 
 eliminar(id:any){
-  if (confirm("Estás seguro de que quiere eliminar el texto?")) {
+  if (confirm("Estás seguro de que quieres eliminar esta información?")) {
     this.datosEducacion.deleteEducacion(id).subscribe(data => {
     this.ngOnInit();
       this.datos =data;
