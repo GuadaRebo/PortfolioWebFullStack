@@ -10,7 +10,9 @@ import { AutenticacionService } from 'src/app/servicios/autenticacion.service';
 })
 export class IniciarSesionComponent implements OnInit {
 form: FormGroup;
-  constructor(private fb: FormBuilder, private autenticacionService: AutenticacionService, private router: Router) { 
+  constructor(private fb: FormBuilder, 
+    private autenticacionService: AutenticacionService, 
+    private router: Router) { 
     this.form = this.fb.group(
       {
         email:["", [Validators.required, Validators.email]],

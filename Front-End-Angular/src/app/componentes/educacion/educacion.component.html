@@ -6,7 +6,9 @@
       class="container margenes borde shadow drop-list" width="1337" height="505">
   
      <h2 id="acerca" class="about">Educación
+       
       <fa-icon  
+      *ngIf="isUsuarioAutenticado"
       class="float-end fa-icon fa-xs mt-1"
       [icon]="faPlus"
       data-bs-toggle="modal" 
@@ -15,10 +17,11 @@
       >
        
       </fa-icon>
+    
      </h2>
 
      <section id="acerca" class="about drag-box" cdkDrag *ngFor="let dato of datos; let i = index"> 
-      <div class="container margenes mt-0" width="21" height="21">
+      <div *ngIf="isUsuarioAutenticado" class="container margenes mt-0" width="21" height="21">
          <fa-icon
          class="float-end fa-icon"
          

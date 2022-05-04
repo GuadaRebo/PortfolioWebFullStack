@@ -27,4 +27,14 @@ get UsuarioAutenticado() {
 
   return this.currentUserSubject.value;
 }
+public logout() {
+  sessionStorage.removeItem('currentUser');
 }
+
+public isUsuarioAutenticado():boolean {
+return sessionStorage.getItem('currentUser')!== null;
+}
+
+}
+
+
