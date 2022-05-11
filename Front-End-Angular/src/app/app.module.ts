@@ -33,7 +33,8 @@ import { EducacionService } from './servicios/educacion.service';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { HabilidadService } from './servicios/habilidad.service';
 import { ProyectoService } from './servicios/proyecto.service';
-
+import { TokenService } from './servicios/token.service'
+import { GuardService } from './servicios/guard.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -64,7 +65,7 @@ import { ProyectoService } from './servicios/proyecto.service';
     ToastrModule.forRoot(),
     DragDropModule,
   ],
-  providers: [AcercaDeService, PersonaService, AutenticacionService, ContactoService, ExpLaboralService, EducacionService, HabilidadService, ProyectoService,
+  providers: [AcercaDeService, PersonaService, AutenticacionService, ContactoService, ExpLaboralService, EducacionService, HabilidadService, ProyectoService, TokenService, GuardService,
   { provide: HTTP_INTERCEPTORS, useClass:InterceptorService, multi: true}],
   bootstrap: [AppComponent]
 })

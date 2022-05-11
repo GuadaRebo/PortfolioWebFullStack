@@ -8,6 +8,7 @@ import { Educacion } from 'src/app/models/educacion';
 import { EducacionService } from 'src/app/servicios/educacion.service';
 import { CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
 import {AutenticacionService} from 'src/app/servicios/autenticacion.service';
+import { TokenService } from 'src/app/servicios/token.service';
 @Component({
   selector: 'app-educacion',
   templateUrl: './educacion.component.html',
@@ -18,7 +19,7 @@ export class EducacionComponent implements OnInit {
   faTrashCan = faTrashCan;
   faPencil = faPencil;
   faPlus = faPlus;
-  isUsuarioAutenticado:boolean=true;
+  isAdmin: boolean = false;
   form:FormGroup;
   datos: Educacion[] = []
 
@@ -27,6 +28,7 @@ export class EducacionComponent implements OnInit {
     private fb:FormBuilder,
     private toastr: ToastrService,
     private auten: AutenticacionService,
+    private tokenService: TokenService
   ) {this.form =this.fb.group ({
     id: [''],
     titulo:["", [Validators.required, Validators.minLength(5)]],
@@ -55,10 +57,9 @@ export class EducacionComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.isUsuarioAutenticado = this.auten.isUsuarioAutenticado();
-    this.datosEducacion.getDatos().subscribe(data => {
+   this.datosEducacion.getDatos().subscribe(data => {
       this.datos = data;
-     
+      this.isAdmin = this.tokenService.isAdmin();
 })
   }
 

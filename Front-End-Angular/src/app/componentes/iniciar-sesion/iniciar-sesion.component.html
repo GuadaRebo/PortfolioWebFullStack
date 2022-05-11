@@ -1,16 +1,25 @@
-<h2 class="m-5 center">Iniciar Sesión</h2>
-<form [formGroup]="form" class="m-5 center" (ngSubmit)="onEnviar($event)">
+<div class="container-fluid center">
+    <div class="col-md-4">
+    
+        <h2 class="m-5 center">Iniciar Sesión</h2>
+       
+    </div>
+    <div class="">
+
+</div>
+
+<form [formGroup]="form" class="m-5 center" (ngSubmit)="onLogin()">
     <div class="mb-3 col-md-4">
-      <label for="exampleInputEmail1" class="form-label">Email</label>
-      <input type="email" formControlName="email" 
-      [ngClass]="{'is-invalid': Email?.errors && Email?.touched, 'is-valid': !Email?.errors && Email?.touched}"
+      <label for="exampleInputEmail1" class="form-label">Nombre de Usuario</label>
+      <input type="nombreUsuario" formControlName="nombreUsuario" 
+      [ngClass]="{'is-invalid': NombreUsuario?.errors && NombreUsuario?.touched, 'is-valid': !NombreUsuario?.errors && NombreUsuario?.touched}"
       class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-     <div *ngIf="Email?.errors && Email?.touched">
-         <p *ngIf="Email?.hasError('required')" class="text-danger">
-            El email es requerido.
+     <div *ngIf="NombreUsuario?.errors && NombreUsuario?.touched">
+         <p *ngIf="NombreUsuario?.hasError('required')" class="text-danger">
+            El nombre de usuario es requerido.
         </p>
-        <p *ngIf="Email?.hasError('email')" class="text-danger">
-            El formato del email debe ser válido.
+        <p *ngIf="NombreUsuario?.errors?.['minlength']" class="text-danger">
+            El nombre de usuario debe ser de 5 o más caracteres.
         </p>
 
      </div>
@@ -33,8 +42,11 @@
     </div>
     
     <div class="col-md-4">
-    <button type="submit" class="btn btn-secondary me-5" routerLink="">Volver</button>
- 
-    <button type="submit" class="btn btn-primary float-end">Enviar</button>
+      
+    
+    <button type="submit" class="btn btn-primary mb-3 float-end">Enviar</button>
 </div>
+<div *ngIf=" isLoginFail" class="alert alert-danger mt-5  center col-md-4 ">Nombre de usuario o contraseña incorrecta.</div>
 </form>
+</div>
+

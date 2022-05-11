@@ -8,7 +8,7 @@
      <h2 id="acerca" class="about">Educación
        
       <fa-icon  
-      *ngIf="isUsuarioAutenticado"
+      *ngIf="isAdmin"
       class="float-end fa-icon fa-xs mt-1"
       [icon]="faPlus"
       data-bs-toggle="modal" 
@@ -21,10 +21,10 @@
      </h2>
 
      <section id="acerca" class="about drag-box" cdkDrag *ngFor="let dato of datos; let i = index"> 
-      <div *ngIf="isUsuarioAutenticado" class="container margenes mt-0" width="21" height="21">
+      <div  class="container margenes mt-0" width="21" height="21">
          <fa-icon
          class="float-end fa-icon"
-         
+         *ngIf="isAdmin"
          [icon]="faTrashCan"
          (click)="eliminar(dato.id)"
          
@@ -34,6 +34,7 @@
          <fa-icon
          class="float-end fa-icon"  
          [icon]="faPencil"
+         *ngIf="isAdmin"
          (click)="onEditEducacion(i)"
          data-bs-toggle="modal" 
          data-bs-target="#EducacionModal" 

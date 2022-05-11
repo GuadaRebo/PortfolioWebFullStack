@@ -8,6 +8,7 @@ import {Router} from '@angular/router';
 import { AcercaDeService } from '../../servicios/acerca-de.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
+import { TokenService } from 'src/app/servicios/token.service';
 @Component({
   selector: 'app-acerca-de',
   templateUrl: './acerca-de.component.html',
@@ -21,8 +22,9 @@ export class AcercaDeComponent implements OnInit {
   faTrashCan = faTrashCan;
   faPencil = faPencil;
   faPlus = faPlus;
-  usuarioAutenticado:boolean=true;
+
   form:FormGroup;
+  isAdmin: boolean = false;
   
   
   
@@ -31,7 +33,8 @@ export class AcercaDeComponent implements OnInit {
     private router: Router,
     private datosAcercaDe: AcercaDeService,
     private fb:FormBuilder, 
-    private toastr: ToastrService, 
+    private toastr: ToastrService,
+    private tokenService: TokenService
     ) {
       this.form =this.fb.group ({
         id: [''],
@@ -47,7 +50,7 @@ export class AcercaDeComponent implements OnInit {
     this.datosAcercaDe.getAcercaDe().subscribe(data => {
 
       this.datos = data;
-    
+      this.isAdmin = this.tokenService.isAdmin();
     });
     
   }

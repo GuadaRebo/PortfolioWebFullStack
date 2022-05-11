@@ -1,7 +1,13 @@
 
-<button type="button" class="menu-btn imagenes">
-    <a href="#login" routerLink="/iniciar-sesion" class="text-menu-btn pb-3">Login
+<button *ngIf="!isLogged" type="button" class="menu-btn imagenes" >
+  <a  href="#login" routerLink="/iniciar-sesion" class="text-menu-btn pb-3">Login
 
-      </a>
-        </button>
-      
+    </a>
+      </button>
+
+     <button *ngIf="isLogged" type="button" class="menu-btn imagenes " (click)="onLogOut()" >
+        <a   class="text-menu-btn pb-3">Logout
+    
+          </a>
+            </button>
+    
