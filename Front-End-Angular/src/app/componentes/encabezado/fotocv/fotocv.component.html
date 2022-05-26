@@ -6,7 +6,8 @@
    
             <fa-icon
             class=" fa-icon float-end"  
-            [icon]="faPencil"    
+            [icon]="faPencil"  
+            *ngIf="isAdmin"
             data-bs-toggle="modal" 
             data-bs-target="#PersonaModal"
             (click)="onEditBanner(i)"

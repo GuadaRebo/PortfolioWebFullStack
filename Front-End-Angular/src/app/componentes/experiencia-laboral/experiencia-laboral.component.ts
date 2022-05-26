@@ -6,6 +6,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ExpLaboralService} from 'src/app/servicios/exp-laboral.service';
 import { ExpLaboral } from '../../models/expLaboral';
 import { ToastrService } from 'ngx-toastr';
+import { TokenService } from 'src/app/servicios/token.service';
 
 @Component({
   selector: 'app-experiencia-laboral',
@@ -16,13 +17,15 @@ export class ExperienciaLaboralComponent implements OnInit {
   faTrashCan = faTrashCan;
   faPencil = faPencil;
   faPlus = faPlus;
-  usuarioAutenticado:boolean=true;
+  isAdmin: boolean = false;
   form:FormGroup;
   datos: ExpLaboral[] = []
+
   constructor(
     private datosExpLaboral:ExpLaboralService,
     private fb:FormBuilder,
     private toastr: ToastrService,
+    private tokenService: TokenService
   ) {this.form =this.fb.group ({
     id: [''],
     posicion:["", [Validators.required, Validators.minLength(5)]],
@@ -53,6 +56,7 @@ export class ExperienciaLaboralComponent implements OnInit {
   ngOnInit(): void {
       this.datosExpLaboral.getDatos().subscribe(data => {
         this.datos = data;
+        this.isAdmin = this.tokenService.isAdmin();
        
   })
 }

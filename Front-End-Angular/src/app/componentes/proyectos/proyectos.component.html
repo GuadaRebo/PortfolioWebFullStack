@@ -4,8 +4,9 @@
  <section id="Proyectos" class="about"> 
      <h2>Proyectos
       <fa-icon  
-      class="float-end fa-icon fa-xs mt-1"
+      class="float-end fa-icon fa-xs mt-1 mb-0"
       [icon]="faPlus"
+      *ngIf="isAdmin"
       data-bs-toggle="modal" 
       data-bs-target="#ProyectoModal"
       (click)="limpiarform()"
@@ -14,9 +15,9 @@
       </fa-icon>
 
      </h2>
-     <div class="card-group">
+     <div class="card-group mt-0 ">
      
-     <div class="   p-3" *ngFor="let dato of datos; let i = index">
+     <div class="pt-0   p-3" *ngFor="let dato of datos; let i = index">
      
      
      <div class="container margenes mt-3 p-3" >
@@ -26,7 +27,7 @@
       
       [icon]="faTrashCan"
       (click)="eliminar(dato.id)"
-      
+      *ngIf="isAdmin"
     >      </fa-icon>
       
       
@@ -36,13 +37,13 @@
       (click)="onEditProyecto(i)"
       data-bs-toggle="modal" 
       data-bs-target="#ProyectoModal" 
-      
+      *ngIf="isAdmin"
     >      </fa-icon>
    </div>
     <div class="card ">
     
              
-            <div class=" container margenes mt-3 p-3">
+            <div class=" container margenes  p-3">
                <a href="{{dato.link}}" target="_blank">
              <img src="assets/{{dato.foto}}" class="rounded" alt="" width="218" height="235">
             </a>

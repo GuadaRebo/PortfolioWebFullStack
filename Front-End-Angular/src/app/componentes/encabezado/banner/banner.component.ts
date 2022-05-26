@@ -7,6 +7,7 @@ import { Persona } from '../../../models/persona';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { DatabannerService } from 'src/app/servicios/databanner.service';
 import { ToastrService } from 'ngx-toastr';
+import { TokenService } from 'src/app/servicios/token.service';
 @Component({
   selector: 'app-banner',
   templateUrl: './banner.component.html',
@@ -14,7 +15,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class BannerComponent implements OnInit {
   datos: Persona[] = []
-  
+  isAdmin: boolean = false;
   banner:any;
   faTrashCan = faTrashCan;
   faPencil = faPencil;
@@ -26,6 +27,7 @@ export class BannerComponent implements OnInit {
     private router: Router,
     private datosPersona:PersonaService,
     private toastr: ToastrService,
+    private tokenService: TokenService,
     private fb:FormBuilder
 
     ) {this.form =this.fb.group ({
@@ -67,6 +69,7 @@ export class BannerComponent implements OnInit {
   ngOnInit(): void {
     this.datosPersona.getDatos().subscribe(data => {
       this.datos = data;
+      this.isAdmin = this.tokenService.isAdmin();
     });
   }
 

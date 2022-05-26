@@ -7,6 +7,7 @@ import { PersonaService } from 'src/app/servicios/persona.service';
 
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
+import { TokenService } from 'src/app/servicios/token.service';
 @Component({
   selector: 'app-fotocv',
   templateUrl: './fotocv.component.html',
@@ -17,12 +18,13 @@ export class FotocvComponent implements OnInit {
   faTrashCan = faTrashCan;
   faPencil = faPencil;
   datos: Persona[] = []
-  usuarioAutenticado:boolean=true;
+  isAdmin: boolean = false;
   constructor(
     
     private router: Router,
     private datosPersona:PersonaService,
     private toastr: ToastrService,
+    private tokenService: TokenService,
     private fb:FormBuilder
   ) {this.form =this.fb.group ({
     id: [''],
@@ -62,6 +64,7 @@ export class FotocvComponent implements OnInit {
   ngOnInit(): void {
     this.datosPersona.getDatos().subscribe(data => {
       this.datos = data;
+      this.isAdmin = this.tokenService.isAdmin();
     });
   
   }

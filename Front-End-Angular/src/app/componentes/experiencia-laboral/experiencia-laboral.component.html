@@ -5,6 +5,7 @@
     <fa-icon  
     class="float-end fa-icon fa-xs mt-1"
     [icon]="faPlus"
+    *ngIf="isAdmin"
     data-bs-toggle="modal" 
     data-bs-target="#ExpLaboralModal"
     (click)="limpiarform()"
@@ -23,13 +24,14 @@
       
       [icon]="faTrashCan"
       (click)="eliminar(dato.id)"
-      
+      *ngIf="isAdmin"
     >      </fa-icon>
       
       
       <fa-icon
       class="float-end fa-icon"  
       [icon]="faPencil"
+      *ngIf="isAdmin"
       (click)="onEditExpLaboral(i)"
       data-bs-toggle="modal" 
       data-bs-target="#ExpLaboralModal" 

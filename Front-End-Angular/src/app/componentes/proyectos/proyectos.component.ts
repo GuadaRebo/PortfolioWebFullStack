@@ -6,6 +6,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { Proyecto } from 'src/app/models/proyecto';
 import { ProyectoService } from 'src/app/servicios/proyecto.service';
+import { TokenService } from 'src/app/servicios/token.service';
 
 
 @Component({
@@ -17,7 +18,7 @@ export class ProyectosComponent implements OnInit {
   faTrashCan = faTrashCan;
   faPencil = faPencil;
   faPlus = faPlus;
-  usuarioAutenticado:boolean=true;
+  isAdmin: boolean = false;
   form:FormGroup;
   datos: Proyecto[] = []
 
@@ -26,6 +27,7 @@ export class ProyectosComponent implements OnInit {
     private datosProyecto:ProyectoService,
     private fb:FormBuilder,
     private toastr: ToastrService,
+    private tokenService: TokenService
   ) {this.form =this.fb.group ({
     id: [''],
     nombre:["", [Validators.required, Validators.minLength(5)]],
@@ -62,6 +64,7 @@ export class ProyectosComponent implements OnInit {
   ngOnInit(): void {
     this.datosProyecto.getProyecto().subscribe(data => {
       this.datos = data;
+      this.isAdmin = this.tokenService.isAdmin(); 
      
 })
   }

@@ -6,6 +6,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { Habilidades } from 'src/app/models/habilidades';
 import { HabilidadService} from '../../servicios/habilidad.service';
+import { TokenService } from 'src/app/servicios/token.service';
 @Component({
   selector: 'app-habilidades',
   templateUrl: './habilidades.component.html',
@@ -15,14 +16,15 @@ export class HabilidadesComponent implements OnInit {
   faTrashCan = faTrashCan;
   faPencil = faPencil;
   faPlus = faPlus;
-  usuarioAutenticado:boolean=true;
+  isAdmin: boolean = false;
   form:FormGroup;
   datos:Habilidades[] = [];
 
   constructor(
     private datosHabilidad: HabilidadService,
     private fb:FormBuilder, 
-    private toastr: ToastrService, 
+    private toastr: ToastrService,
+    private tokenService: TokenService
   ) {
     this.form =this.fb.group ({
       id: [''],
@@ -43,6 +45,7 @@ export class HabilidadesComponent implements OnInit {
     this.datosHabilidad.getHabilidad().subscribe(data => {
 
       this.datos = data;
+      this.isAdmin = this.tokenService.isAdmin();
     
     });
   }

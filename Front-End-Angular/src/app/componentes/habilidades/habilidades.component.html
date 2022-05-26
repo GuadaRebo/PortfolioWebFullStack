@@ -5,6 +5,7 @@
                 <fa-icon  
                 class="float-end fa-icon fa-xs mt-1"
                 [icon]="faPlus"
+                *ngIf="isAdmin"
                 data-bs-toggle="modal" 
                 data-bs-target="#HabilidadModal"
                 (click)="limpiarform()"
@@ -17,14 +18,15 @@
        <div class="container margenes mt-0" width="21" height="21" *ngFor="let dato of datos; let i = index">
         <fa-icon
         class="float-end fa-icon"
-        
+        *ngIf="isAdmin"
         [icon]="faTrashCan"
         (click)="eliminar(dato.id)"
         
       >      </fa-icon>
       <fa-icon
       class="float-end fa-icon"  
-      [icon]="faPencil"    
+      [icon]="faPencil" 
+      *ngIf="isAdmin"
       (click)="onEditHabilidad(i)"
       data-bs-toggle="modal" 
       data-bs-target="#HabilidadModal" 
