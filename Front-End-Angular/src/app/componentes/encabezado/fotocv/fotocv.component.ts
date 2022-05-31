@@ -1,10 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import {faTrashCan } from '@fortawesome/free-solid-svg-icons';
 import {faPencil } from '@fortawesome/free-solid-svg-icons';
-import {Router} from '@angular/router';
 import { Persona } from '../../../models/persona';
 import { PersonaService } from 'src/app/servicios/persona.service';
-
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { TokenService } from 'src/app/servicios/token.service';
@@ -21,7 +19,6 @@ export class FotocvComponent implements OnInit {
   isAdmin: boolean = false;
   constructor(
     
-    private router: Router,
     private datosPersona:PersonaService,
     private toastr: ToastrService,
     private tokenService: TokenService,
@@ -65,9 +62,22 @@ export class FotocvComponent implements OnInit {
     this.datosPersona.getDatos().subscribe(data => {
       this.datos = data;
       this.isAdmin = this.tokenService.isAdmin();
-    });
-  
+    });  
   }
+
+  edit(){
+    let datos:Persona = this.form.value;
+    
+    this.datosPersona.editPersona(datos).subscribe(
+      () => {
+        
+        this.ngOnInit();
+        this.toastr.success('Sus datos han sido actualizados correctamente!', 'Datos actualizados!'); 
+        window.location.reload();
+      }
+    )
+  }
+
   onEditBanner(index: number) {
     let datos: Persona = this.datos[index];
     this.loadForm(datos);
@@ -82,22 +92,12 @@ export class FotocvComponent implements OnInit {
       domicilio:datos.domicilio,
       imagen_cv: datos.imagen_cv,
       position: datos.position,
-      imagen_banner: datos.imagen_banner,
+      imagen_banner: datos.imagen_banner
       
     })
   }
   limpiarform() {
     this.form.reset();
   }
-  edit(){
-    let datos:Persona = this.form.value;
-    
-    this.datosPersona.editPersona(datos).subscribe(
-      () => {
-        
-        this.ngOnInit();
-        this.toastr.success('Sus datos han sido actualizados correctamente!', 'Datos actualizados!'); 
-      }
-    )
-  }
+  
 }

@@ -2,12 +2,11 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { PersonaService } from 'src/app/servicios/persona.service';
 import {faTrashCan } from '@fortawesome/free-solid-svg-icons';
 import {faPencil } from '@fortawesome/free-solid-svg-icons';
-import {Router} from '@angular/router';
 import { Persona } from '../../../models/persona';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { DatabannerService } from 'src/app/servicios/databanner.service';
 import { ToastrService } from 'ngx-toastr';
 import { TokenService } from 'src/app/servicios/token.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-banner',
   templateUrl: './banner.component.html',
@@ -19,16 +18,16 @@ export class BannerComponent implements OnInit {
   banner:any;
   faTrashCan = faTrashCan;
   faPencil = faPencil;
-  usuarioAutenticado:boolean=true;
+
   form:FormGroup;
 
   constructor(
-    private dataService: DatabannerService,
-    private router: Router,
+  
     private datosPersona:PersonaService,
     private toastr: ToastrService,
     private tokenService: TokenService,
-    private fb:FormBuilder
+    private fb:FormBuilder,
+    private router: Router
 
     ) {this.form =this.fb.group ({
       id: [''],
@@ -78,9 +77,11 @@ export class BannerComponent implements OnInit {
     
     this.datosPersona.editPersona(datos).subscribe(
       () => {
+      
+        this.ngOnInit();       
         
-        this.ngOnInit();
         this.toastr.success('Sus datos han sido actualizados correctamente!', 'Datos actualizados!'); 
+        window.location.reload();
       }
     )
   }
@@ -117,4 +118,7 @@ limpiarform() {
     })
   }
   
+  scrollTo(element: any): void {
+    (document.getElementById(element) as HTMLElement).scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"});
+  }
 }

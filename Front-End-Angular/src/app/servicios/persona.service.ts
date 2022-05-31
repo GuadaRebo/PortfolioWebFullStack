@@ -10,7 +10,7 @@ import { config } from '../models/config';
   providedIn: 'root'
 })
 export class PersonaService {
-  private apiURL ="http://localhost:8080/"
+  
   
   constructor(
     private http:HttpClient) { }

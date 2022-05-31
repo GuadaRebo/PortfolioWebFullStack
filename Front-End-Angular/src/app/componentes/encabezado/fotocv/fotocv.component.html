@@ -1,4 +1,4 @@
-<div class=" mt-2 row" >
+<div class=" mt-2 row"  >
        <div class="container bloque col-xs-12 col-sm-3 col-md-3 col-lg-3 ms-5 " *ngFor="let dato of datos; let i = index">
           <img src="/assets/{{dato.imagen_cv}}" class="fotocv img-fluid" alt="Foto de Guadalupe Reboiro" width="150" height="150">
           <div class="container  mt-0"   >
@@ -9,7 +9,7 @@
             [icon]="faPencil"  
             *ngIf="isAdmin"
             data-bs-toggle="modal" 
-            data-bs-target="#PersonaModal"
+            data-bs-target="#CVModal"
             (click)="onEditBanner(i)"
           >      </fa-icon>
             
@@ -25,7 +25,7 @@
 </div>
 
 <!-- Modal -->
-<div class="modal fade" id="PersonaModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="CVModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -89,37 +89,13 @@
                    
             </div>
           </div>   
-          <div class="mb-3">
-            <label for="message-text" class="col-form-label">Posición:</label>
-            <input formControlName="position"  class="form-control" id="texto" [ngClass]="{'is-invalid': position?.errors && position?.touched, 'is-valid': !position?.errors && position?.touched}">
-            <div *ngIf="position?.invalid && position?.touched">
-              <div *ngIf="position?.errors?.['required']" class="text-danger">
-                  La posición es requerida.
-              </div>
-              <div *ngIf="position?.errors?.['minlength']" class="text-danger">
-                 La posición debe tener como  mínimo 5 caracteres.
-              </div>
-                   
-            </div>
-          </div>   
-          <div class="mb-3">
-            <label for="message-text" class="col-form-label">Imagen Banner:</label>
-            <input formControlName="imagen_banner"  class="form-control" id="texto" [ngClass]="{'is-invalid': imagen_banner?.errors && imagen_banner?.touched, 'is-valid': !imagen_banner?.errors && imagen_banner?.touched}">
-            <div *ngIf="imagen_banner?.invalid && imagen_banner?.touched">
-              <div *ngIf="imagen_banner?.errors?.['required']" class="text-danger">
-                  La imagen del banner es requerida.
-              </div>
-              <div *ngIf="imagen_banner?.errors?.['minlength']" class="text-danger">
-                 La ruta de la imagen debe tener como  mínimo 5 caracteres.
-              </div>
-                    
-            </div>
-          </div>   
+          
+         
         </form>
       </div>
       <div class="modal-footer">
         <button type="button" id="cerrarModalPersona" class="btn btn-secondary" data-bs-dismiss="modal" (click)="limpiarform()">Cerrar</button>
-        <button type="submit" [disabled]="form.invalid" class="btn btn-primary" (click)="edit()">Enviar</button>
+        <button type="submit" [disabled]="form.invalid" data-bs-dismiss="modal" class="btn btn-primary" (click)="edit()">Enviar</button>
       </div>
     </div>
   </div>

@@ -1,3 +1,4 @@
+
 <div class="imagenbanner position-relative" *ngFor="let dato of datos; let i = index">
   
   <div class="container margenes mt-0" >
@@ -16,15 +17,15 @@
     <div>
         <nav class="navbar navbar-expand-xl">
             <div class="container justify-content-end">
-              <ul class="navbar-nav">
+              <ul class="navbar-nav cursor-pointer">
                    <li class="nav-item">
-                     <a class="nav-link" href="#Acercade">Acerca de</a>
+                     <a class="nav-link" (click)="scrollTo('Acercade')" >Acerca de</a>
                    </li>
                    <li class="nav-item">
-                     <a class="nav-link" href="#Proyectos">Proyectos</a>
+                     <a class="nav-link" (click)="scrollTo('Proyectos')">Proyectos</a>
                    </li>
                   <li class="nav-item">
-                     <a class="nav-link" href="#Contacto">Contacto</a>
+                     <a class="nav-link" (click)="scrollTo('Contacto')" >Contacto</a>
                    </li>
              </ul>
             </div>
@@ -77,32 +78,7 @@
                   
             </div>
           </div>         
-          <div class="mb-3">
-            <label for="message-text" class="col-form-label">Domicilio:</label>
-            <input formControlName="domicilio"  class="form-control" id="texto" [ngClass]="{'is-invalid': domicilio?.errors && domicilio?.touched, 'is-valid': !domicilio?.errors && domicilio?.touched}">
-            <div *ngIf="domicilio?.invalid && domicilio?.touched" >
-              <div *ngIf="domicilio?.errors?.['required']" class="text-danger">
-                  El domicilio es requerido.
-              </div>
-              <div *ngIf="domicilio?.errors?.['minlength']" class="text-danger">
-                 El domicilio debe tener como  mínimo 5 caracteres.
-              </div>
-                    
-            </div>
-          </div>   
-          <div class="mb-3">
-            <label for="message-text" class="col-form-label">Imagen CV:</label>
-            <input formControlName="imagen_cv"  class="form-control" id="texto" [ngClass]="{'is-invalid': imagen_cv?.errors && imagen_cv?.touched, 'is-valid': !imagen_cv?.errors && imagen_cv?.touched}">
-            <div *ngIf="imagen_cv?.invalid && imagen_cv?.touched">
-              <div *ngIf="imagen_cv?.errors?.['required']" class="text-danger">
-                La imagen personal es requerida.
-              </div>
-              <div *ngIf="imagen_cv?.errors?.['minlength']" class="text-danger">
-                La ruta de la imagen debe tener como  mínimo 5 caracteres.
-              </div>
                    
-            </div>
-          </div>   
           <div class="mb-3">
             <label for="message-text" class="col-form-label">Posición:</label>
             <input formControlName="position"  class="form-control" id="texto" [ngClass]="{'is-invalid': position?.errors && position?.touched, 'is-valid': !position?.errors && position?.touched}">
