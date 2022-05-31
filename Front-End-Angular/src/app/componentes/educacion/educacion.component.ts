@@ -22,7 +22,7 @@ export class EducacionComponent implements OnInit {
   isAdmin: boolean = false;
   form:FormGroup;
   datos: Educacion[] = []
-
+  
   constructor(
     private datosEducacion:EducacionService,
     private fb:FormBuilder,

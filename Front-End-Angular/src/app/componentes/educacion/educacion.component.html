@@ -22,8 +22,8 @@
       </fa-icon>
     
      </h2>
-
-     <section id="acerca" class="about drag-box" cdkDrag *ngFor="let dato of datos; let i = index"> 
+<div *ngIf="isAdmin">
+     <section id="acerca"  class="about  drag-box" cdkDrag *ngFor="let dato of datos; let i = index"> 
       <div  class="container margenes mt-0" width="21" height="21">
          <fa-icon
          class="float-end fa-icon"
@@ -46,7 +46,7 @@
     </div>
   
 
-     <div  class="container margenes pt-4 drag-box">
+     <div  class="container margenes pt-4 ">
        <div class="row">
          <div class="col col-xl-2 me-0 pe-0 pb-3">
             <img src="/assets/{{dato.logo_institucion}}" alt="" width="107" height="88">         
@@ -67,6 +67,55 @@
     
     </div>
   </section>
+</div>
+<div *ngIf="!isAdmin">
+  <section id="acerca"  class="about "  *ngFor="let dato of datos; let i = index"> 
+   <div  class="container margenes mt-0" width="21" height="21">
+      <fa-icon
+      class="float-end fa-icon"
+      *ngIf="isAdmin"
+      [icon]="faTrashCan"
+      (click)="eliminar(dato.id)"
+      
+    >      </fa-icon>
+      
+      
+      <fa-icon
+      class="float-end fa-icon"  
+      [icon]="faPencil"
+      *ngIf="isAdmin"
+      (click)="onEditEducacion(i)"
+      data-bs-toggle="modal" 
+      data-bs-target="#EducacionModal" 
+      
+    >      </fa-icon>
+ </div>
+
+
+  <div  class="container margenes pt-4 ">
+    <div class="row">
+      <div class="col col-xl-2 me-0 pe-0 pb-3">
+         <img src="/assets/{{dato.logo_institucion}}" alt="" width="107" height="88">         
+      </div>
+       <div class="col col-xl-10">
+          <div class="expyeduc ms-0 ps-0 me-4 ">
+             <h3 class="expyeduc">{{dato.titulo}}</h3>
+             <div class="acerca-text">
+                <ul >
+<li> {{dato.expedido_por}}. {{dato.periodo}} </li>
+
+</ul>
+              
+             </div>
+          </div>
+ </div>
+ </div>
+ 
+ </div>
+</section>
+</div>
+
+
  </div>
 
  
