@@ -6,11 +6,11 @@ import {PortfolioComponent} from './componentes/portfolio/portfolio.component'
 import { GuardService as guard} from './servicios/guard.service';
 
 const appRoutes: Routes = [
-  {path: 'portfolio', component: PortfolioComponent, canActivate: [guard], data: {expectedRol: ['admin', 'user']}},
+  {path: 'portfolio', component: PortfolioComponent},
   
   {path: 'iniciar-sesion', component: IniciarSesionComponent}, 
-  {path: '**', redirectTo: 'iniciar-sesion', pathMatch: 'full'},
-  {path: '', redirectTo: 'iniciar-sesion', pathMatch: 'full'},
+  {path: '**', redirectTo: 'portfolio', pathMatch: 'full'},
+  {path: '', redirectTo: 'portfolio', pathMatch: 'full'},
   
   
 ]
